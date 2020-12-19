@@ -12,7 +12,7 @@
       </li>
       <li :focusable=false>
         <div class="feature-item">
-          <div v-for="(feature, index) in featureList" :key="feature.id" :focusable=true :focusScale="1.1" :requestFocus="index === 0" @click="routeTo(`/demo/${feature.id}`)" class="button">
+          <div v-for="(feature, index) in featureList" @focus="onFocus" :key="feature.id" :focusable=true :focusScale="1.1" :requestFocus="index === 0" @click="routeTo(`/demo/${feature.id}`)" class="button">
             <p>{{ feature.name }}</p>
           </div>
         </div>
@@ -86,6 +86,9 @@ export default {
   methods: {
     routeTo(url) {
       this.$router.push(url)
+    },
+    onFocus(e){
+      console.log("onFocus isFocused:"+e.isFocused)
     },
   }
 };
