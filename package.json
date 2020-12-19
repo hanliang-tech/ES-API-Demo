@@ -1,0 +1,44 @@
+{
+  "name": "es-api-demo",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/main.js",
+  "nativeMain": "./src/main-native.js",
+  "author": "zhaopeng <zhaopengdev@163.com>",
+  "license": "Apache-2.0",
+  "description": "ESApp Api Demo",
+  "repository": "https://github.com/Tencent/Hippy/tree/master/examples/hippy-vue-demo",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "debug": "estv-debug",
+    "dev": "webpack --config ./scripts/dev.js",
+    "hippy:vendor": "webpack --config ./scripts/hippy-webpack.ios-vendor.js --config ./scripts/hippy-webpack.android-vendor.js",
+    "hippy:build": "webpack --config ./scripts/hippy-webpack.android.js",
+    "huantv": "webpack --config ./scripts/hippy-webpack.android.js"
+  },
+  "dependencies": {
+    "@hippy4tv/vue": "^0.0.3",
+    "@hippy4tv/vue-native-components": "0.0.5",
+    "@hippy4tv/vue-router": "^0.0.4",
+    "core-js": "^3.4.3",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3"
+  },
+  "devDependencies": {
+    "@estv/debug-server": "^0.0.5",
+    "@hippy4tv/vue-css-loader": "^0.0.3",
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "babel-eslint": "^10.0.3",
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "unicode-loader": "^1.0.7",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-cli": "^3.3.10"
+  }
+}
