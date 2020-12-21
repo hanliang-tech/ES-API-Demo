@@ -10,25 +10,75 @@
         <p class="div-demo-transform-text">Transform</p>
       </div>
       <label>水平滚动:</label>
-      <div class="div-demo-2">
+      <div class="div-demo-2" :focusable=false>
         <!-- div 带着 overflow 属性的，只能有一个子节点，否则终端会崩溃 -->
         <div class="display-flex flex-row div-demo-2-container">
-          <p class="text-block" :isFocusable=true>A</p>
-          <p class="text-block" :isFocusable=true>B</p>
-          <p class="text-block">C</p>
-          <p class="text-block">D</p>
-          <p class="text-block">E</p>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>A</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>B</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>C</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>D</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>E</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>F</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>G</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>H</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>I</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>J</p>
+          </div>
         </div>
       </div>
       <label>垂直滚动:</label>
-      <div class="div-demo-3">
+      <div class="div-demo-3" :focusable=false>
         <!-- div 带着 overflow 属性的，只能有一个子节点，否则终端会崩溃 -->
         <div class="display-flex flex-column">
-          <p class="text-block" :isFocusable=true>A</p>
-          <p class="text-block" :isFocusable=true>B</p>
-          <p class="text-block">C</p>
-          <p class="text-block">D</p>
-          <p class="text-block">E</p>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>A</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>B</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>C</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>D</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>E</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>F</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>G</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>H</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>I</p>
+          </div>
+          <div class="text-block" :focusable=true :focusScale="1.1">
+            <p>J</p>
+          </div>
         </div>
       </div>
     </div>
@@ -38,10 +88,14 @@
 <style scope>
 
   /* Common CSS Styles */
+  label {
+    font-size: 22px;
+  }
 
   #div-demo {
     flex: 1;
     overflow-y: scroll;
+    padding: 100px;
   }
 
   .display-flex {
@@ -67,6 +121,12 @@
     margin: 20px;
     color: #40b883;
     text-align: center;
+  }
+  .text-block p {
+    color: #40b883;
+    text-align: center;
+    font-size: 80px;
+    line-height: 100px;
   }
 
   /* Specfic styles */
