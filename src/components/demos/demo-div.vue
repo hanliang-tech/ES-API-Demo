@@ -95,7 +95,6 @@
   #div-demo {
     flex: 1;
     overflow-y: scroll;
-    padding: 100px;
   }
 
   .display-flex {
@@ -132,13 +131,15 @@
   /* Specfic styles */
   .div-demo-1 {
     display: flex;
-    height: 40px;
-    background-image: url('http://mat1.gtimg.com/www/qq2018/imgs/qq_logo_2018x2.png');
+    height: 200px;
+    background-image: url('http://test-mp.hiliad.com/static/images/WX20201028-180320@2x.png');
     background-repeat: no-repeat;
   }
 
   .div-demo-1-text {
     margin-left: 40px;
+    color: #fff;
+    font-size: 20px;
   }
 
   /* flex-direction is necessary for horizontal scrolling for Native */
@@ -146,9 +147,6 @@
     overflow-x: scroll;
     margin: 10px;
     flex-direction: row;
-  }
-
-  .div-demo-2-container {
     width: 1000px;
   }
 

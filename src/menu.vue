@@ -83,6 +83,12 @@ export default {
     // 取消 exit() 的注释，即可阻止退出，在前面可以加上退出条件
     // exit();
   },
+  activated() {
+    console.log('api------activated');
+  },
+  deactivated() {
+    console.log('api------deactivated');
+  },
   methods: {
     routeTo(url) {
       this.$router.push(url)

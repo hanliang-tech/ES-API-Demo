@@ -7,10 +7,6 @@
 
 <style scope>
 
-  /* Common CSS Styles */
-  #text-view {
-    padding: 100px;
-  }
   #text-view .view-box {
     width: 300px;
     padding: 10px;
