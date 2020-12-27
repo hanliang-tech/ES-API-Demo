@@ -36,8 +36,13 @@ export default {
       DEBUG_SUBTITLE,
     };
   },
+
+  mounted() {
+    // Vue.Native.callNative('FocusModule', 'setDefaultFocusBorderEnable', true);
+  },
   created() {
     console.log('page------------------index');
+
   },
   methods: {
     goToHome() {
