@@ -14,12 +14,11 @@
     "lint": "vue-cli-service lint",
     "debug": "estv-debug",
     "dev": "webpack --config ./scripts/dev.js",
-    "hippy:vendor": "webpack --config ./scripts/hippy-webpack.ios-vendor.js --config ./scripts/hippy-webpack.android-vendor.js",
-    "hippy:build": "webpack --config ./scripts/hippy-webpack.android.js",
-    "esbuild": "webpack --config ./scripts/hippy-webpack.android.js"
+    "vendor": "webpack --config ./scripts/android-vendor.js",
+    "esbuild": "webpack --config ./scripts/android-build.js"
   },
   "dependencies": {
-    "@hippy4tv/vue": "^0.0.3",
+    "@hippy4tv/vue": "^0.0.4",
     "@hippy4tv/vue-native-components": "0.0.5",
     "@hippy4tv/vue-router": "^0.0.4",
     "core-js": "^3.4.3",
