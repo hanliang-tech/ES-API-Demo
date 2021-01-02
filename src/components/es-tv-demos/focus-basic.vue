@@ -3,26 +3,25 @@
 
   <div class="listView">
     <div class="row" :clipChildren="true">
-      <div class="divBox" :focusable="true" :enableFocusBorder="true" focusBorderColor="#0000ff">
-        <p >焦点边框</p>
+      <div class="simpleBox" :focusable="true" :focusScale="1.1" >
+        <p >焦点属性</p>
       </div>
 
-      <div class="divBox" focus >
-        <p >focus属性激活焦点、边框、放大1.1倍</p>
+      <div class="simpleBox" focusView >
+        <p >focusView属性:激活焦点、白色边框、默认放大倍数</p>
       </div>
-
-      <div class="divBox" :focus="{
-        border:true,    //激活边框
-        focusScale:1.1, //焦点放大1.3倍
-        borderColor:'#ff0000', //边框颜色
-        borderRadius:10   //边框圆角半径
-      }" >
-        <p>focus对象进一步控制焦点样式</p>
-      </div>
-
       //TODO 使用类来控制焦点
-      <div class="divBox" focus >
+      <div class="divBox" :focusable="true" >
         <p >使用类来控制焦点</p>
+      </div>
+
+      <div class="divBoxClass" :focusable="true">
+
+        <div class="divBoxTest" :duplicateParentState="true">
+          <p :duplicateParentState="true">焦点时变色</p>
+          <p :duplicateParentState="false">焦点时不变</p>
+        </div>
+        <text-view class="textView" :duplicateParentState="true">duplicateParentState同步父级div的状态变化</text-view>
       </div>
     </div>
 
@@ -48,9 +47,9 @@
     margin-top: 20px;
   }
 
-  .listView .divBox{
-    width: 200px;
-    height: 50px;
+  .listView .simpleBox{
+    width: 250px;
+    height: 80px;
     background-color: transparent;
     align-items: center;
     justify-content: center;
@@ -62,9 +61,59 @@
     padding: 5px;
   }
 
-  .listView .divBox p{
+  .listView .divBox{
+    width: 250px;
+    height: 80px;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-color: #40b883;
+    border-width: 2px;
+    border-radius: 10px;
+    margin-left: 20px;
+    padding: 5px;
+    focus-scale:1.2;
+    focus-border-style:solid;
+    focus-border-radius: 5px;
+    focus-background-color:#ff0000;
+  }
+
+  .listView .divBoxClass{
+    width: 250px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-color: #40b883;
+    border-width: 2px;
+    border-radius: 10px;
+    margin-left: 20px;
+  }
+
+  .listView .divBoxTest{
+    width: 250px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: greenyellow;
+    focus-background-color: white;
+  }
+
+  .listView  p{
     font-size: 16px;
     color: #42b983;
+    focus-color:#ff0000;
+  }
+
+  .listView  .textView{
+    width: 250px;
+    height: 40px;
+    font-size: 16px;
+    color: #42b983;
+    focus-color:#ff0000;
   }
 
 </style>
