@@ -63,7 +63,8 @@ export default {
     flex: 1;
     height: 100%;
     overflow: hidden;
-    padding: 50px;
+    background-color: #fff;
+    /*padding: 50px;*/
   }
   .title {
     font-size: 20px;

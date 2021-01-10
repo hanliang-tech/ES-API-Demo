@@ -95,6 +95,7 @@
   #div-demo {
     flex: 1;
     overflow-y: scroll;
+    padding: 50px;
   }
 
   .display-flex {

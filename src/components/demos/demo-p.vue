@@ -16,6 +16,9 @@
 </template>
 
 <style scope>
+.p-demo {
+  padding: 50px;
+}
 .p-demo .p-demo-content {
   margin: 20px;
 }

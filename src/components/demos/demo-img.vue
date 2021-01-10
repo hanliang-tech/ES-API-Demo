@@ -15,6 +15,7 @@
 #demo-img {
   overflow-y: scroll;
   flex: 1;
+  padding: 50px;
 }
 
 #demo-img #demo-img-container {

@@ -8,7 +8,7 @@
       <!--</div>-->
       <!--</li>-->
       <li :focusable=false>
-        <p class="feature-title">浏览器组件 Demos</p>
+        <p class="feature-title">基础组件 Demos</p>
       </li>
       <li :focusable=false>
         <div class="feature-item">
