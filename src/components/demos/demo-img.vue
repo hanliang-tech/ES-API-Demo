@@ -7,8 +7,6 @@
       <img src="http://zxpic.imtt.qq.com/zxpic_imtt/2018/06/08/2000/originalimage/200721_3738332814_3_540_364.jpg" class="image cover" />
       <label>Center:</label>
       <img src="http://zxpic.imtt.qq.com/zxpic_imtt/2018/06/08/2000/originalimage/200721_3738332814_3_540_364.jpg" class="image center" />
-      <label>Gif:</label>
-      <img src="http://img.qdaily.com/article/article_show/20180226115511QR0IMWjcBZmo8FaV.gif" class="image cover" />
     </div>
   </div>
 </template>
@@ -17,6 +15,7 @@
 #demo-img {
   overflow-y: scroll;
   flex: 1;
+  padding: 50px;
 }
 
 #demo-img #demo-img-container {

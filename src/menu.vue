@@ -8,7 +8,7 @@
       <!--</div>-->
       <!--</li>-->
       <li :focusable=false>
-        <p class="feature-title">浏览器组件 Demos</p>
+        <p class="feature-title">基础组件 Demos</p>
       </li>
       <li :focusable=false>
         <div class="feature-item">
@@ -82,6 +82,12 @@ export default {
   beforeAppExit(/* exit */) {
     // 取消 exit() 的注释，即可阻止退出，在前面可以加上退出条件
     // exit();
+  },
+  activated() {
+    console.log('api------activated');
+  },
+  deactivated() {
+    console.log('api------deactivated');
   },
   methods: {
     routeTo(url) {
