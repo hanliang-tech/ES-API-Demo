@@ -3,6 +3,7 @@ import focusui from './focus-event.vue';
 import focusBasic from './focus-basic.vue';
 import listView from './list.vue';
 import loading from './loading.vue';
+import progress from './progress.vue';
 
 const demos = {
   focusBasic: {
@@ -24,6 +25,10 @@ const demos = {
   loading: {
     name: 'LoadingView',
     component: loading,
+  },
+  progress: {
+    name: 'Progress',
+    component: progress,
   },
 
 };

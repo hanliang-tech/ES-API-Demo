@@ -4,6 +4,7 @@ import HippyVueNativeComponents from '@hippy4tv/vue-native-components';
 import VideoComponent from './components/register/video';
 import coverFlow from './components/register/coverFlow';
 import loading from './components/register/loading';
+import SeekBar from './components/register/seek-bar';
 import ScrollView from './components/register/ScrollView';
 import TextView from './components/register/TextView';
 import App from './app.vue';
@@ -23,6 +24,7 @@ Vue.use(coverFlow);
 Vue.use(loading);
 Vue.use(ScrollView);
 Vue.use(TextView);
+Vue.use(SeekBar);
 
 const router = new VueRouter(routes);
 
