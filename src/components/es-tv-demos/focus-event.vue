@@ -4,12 +4,12 @@
   <div class="focusTest" :clipChildren="false">
 
     <p class="rowHead">焦点UI</p>
-    <div class="row">
+    <div class="row" @childFocus="onChildFocus">
       <div class="divBox" :focusable="true" :enableFocusBorder="true" focusBorderColor="#0000ff">
         <p >焦点边框</p>
       </div>
 
-      <div class="divBox" :focusable="true" :focusScale="1.1">
+      <div class="divBox" focusView>
         <p >放大效果</p>
       </div>
     </div>
@@ -32,7 +32,9 @@ export default {
     });
   },
   methods: {
-
+    onChildFocus(e) {
+      console.log(`onChildFocus index:${e.child.index}`);
+    },
   },
 };
 </script>
@@ -74,6 +76,7 @@ export default {
     border-radius: 10px;
     margin-left: 20px;
   }
+
 
   .focusTest .divBox p{
     font-size: 20px;

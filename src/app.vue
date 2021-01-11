@@ -42,7 +42,6 @@ export default {
   },
   created() {
     console.log('page------------------index');
-
   },
   methods: {
     goToHome() {
