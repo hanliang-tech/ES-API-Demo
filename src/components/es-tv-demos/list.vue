@@ -2,10 +2,21 @@
 
 
   <div class="listView">
-    <ul class="row" :clipChildren="true" :blockFocusDirections="blockDirections">
-      <div class="divBox" :focusable="true" :enableFocusBorder="true" focusBorderColor="#0000ff">
-        <p >焦点边框</p>
-      </div>
+    <p class="rowHead">横向列表</p>
+    <ul
+      class="row"
+      ref="list"
+      @endReached="onEndReached"
+      @scroll="onScroll"
+      :numberOfRows="dataCount"
+      horizontal
+    >
+      <li
+        v-for="index in dataCount"
+        :key="index"
+      >
+        <div class="divBox" :focusable="true"><p>{{"item"+index}}</p></div>
+      </li>
     </ul>
 
   </div>
@@ -16,6 +27,7 @@ export default {
   data() {
     return {
       blockDirections: ['left', 'right'],
+      dataCount: 100,
     };
   },
 };
@@ -31,8 +43,15 @@ export default {
     padding: 25px;
   }
 
+  .listView .rowHead {
+    font-size: 30px;
+    color: white;
+    text-align: left;
+    line-height: 70px;
+  }
+
   .listView .row{
-    width: 1920px;
+    width: 1600px;
     height: 100px;
     padding: 25px;
     flex-direction: row;
@@ -52,6 +71,8 @@ export default {
     border-radius: 10px;
     margin-left: 20px;
     padding: 5px;
+    focus-scale:1.0;
+    focus-background-color:red;
   }
 
   .listView .divBox p{
