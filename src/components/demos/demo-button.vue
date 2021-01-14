@@ -1,15 +1,13 @@
 <template>
   <div class="button-demo">
     <label>按钮和状态绑定:</label>
-    <button v-bind:class="{ 'is-active': isClicked, 'is-pressing': isPressing }"
+    <button :class="{ 'is-active': isClicked }" :focusable="true" :requestFocus="true"
       class="button-demo-1"
-      @click="clickView"
-      @touchdown="onTouchDown"
-      @touchmove="onTouchMove">
+      @click="clickView">
       <span v-if="isClicked" class="button-text">视图已经被点击了，再点一下恢复</span>
       <span v-else class="button-text">视图尚未点击</span>
     </button>
-    <img v-show="isClicked" src="http://mat1.gtimg.com/www/qq2018/imgs/qq_logo_2018x2.png" class="button-demo-1-image" />
+    <img v-show="isClicked" src="http://test-mp.hiliad.com/static/images/WX20201028-180320@2x.png" class="button-demo-1-image" />
   </div>
 </template>
 
@@ -19,18 +17,10 @@ export default {
     clickView() {
       this.isClicked = !this.isClicked;
     },
-    onTouchDown(evt) {
-      evt.stopPropagation();
-    },
-    onTouchMove(evt) {
-      evt.stopPropagation();
-      console.log(evt);
-    },
   },
   data() {
     return {
       isClicked: false,
-      isPressing: false,
     };
   },
 };

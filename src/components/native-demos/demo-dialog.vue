@@ -1,7 +1,7 @@
 <template>
   <div id="dialog-demo">
     <label>显示或者隐藏对话框:</label>
-    <button class="dialog-demo-button-1" @click="clickView">
+    <button class="dialog-demo-button-1" @click="clickView" :focusable="true" :requestFocus="true">
       <span class="button-text">显示对话框</span>
     </button>
     <!-- dialog 无法支持 v-show，只能使用 v-if 进行显示切换 -->
@@ -19,14 +19,14 @@
         <div class="fullscreen center row" @click="clickView">
           <!-- 内容区域阻止点击事件冒泡导致关闭 -->
           <div class="dialog-demo-close-btn center column" @click="stopPropagation">
-            <p class="dialog-demo-close-btn-text">点击空白区域关闭</p>
-            <button class="dialog-demo-button-1" @click="clickOpenSecond">
+            <p class="dialog-demo-close-btn-text">按返回键关闭</p>
+            <button class="dialog-demo-button-1" @click="clickOpenSecond" :focusable="true">
               <span class="button-text">点击打开二级全屏弹窗</span>
             </button>
           </div>
           <dialog animationType="slide" v-if="dialog2IsVisible" @requestClose="onClose">
-            <div @click="clickOpenSecond" class="dialog-2-demo-wrapper">
-              <p>Hello 我是二级全屏弹窗，点击任意位置关闭。</p>
+            <div class="dialog-2-demo-wrapper">
+              <p>Hello 我是二级全屏弹窗，按返回键关闭。</p>
             </div>
           </dialog>
         </div>
@@ -132,6 +132,7 @@ export default {
   width: 200px;
   height: 200px;
   margin-top: 300px;
+  margin-left: 860px;
   background-color: red;
   border-radius: 8px;
 }

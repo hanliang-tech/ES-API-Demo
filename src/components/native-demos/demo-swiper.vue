@@ -1,12 +1,6 @@
 <template>
   <div id="demo-swiper">
     <div class="toolbar">
-      <button class="toolbar-btn" @click="scrollToPrevPage">
-        <span>翻到上一页</span>
-      </button>
-      <button class="toolbar-btn" @click="scrollToNextPage">
-        <span>翻到下一页</span>
-      </button>
       <p class="toolbar-text">当前第 {{ currentSlideNum + 1 }} 页，</p>
       <p class="toolbar-text">滚屏状态：{{ state }}</p>
     </div>
@@ -47,6 +41,7 @@
 </template>
 
 <script>
+import { getApp } from '../../util';
 export default {
   data() {
     return {
@@ -70,7 +65,9 @@ export default {
     };
   },
   mounted() {
+    this.app = getApp();
     this.$maxSlideIndex = this.$refs.swiper.$el.childNodes.length - 1;
+    this.app.$on('nativeOnKeyDown', this.listener);
   },
   methods: {
     scrollToNextPage() {
@@ -99,6 +96,14 @@ export default {
     onStateChanged(evt) {
       // 更新当前滚屏状态
       this.state = evt.state;
+    },
+    listener(key) {
+      console.log('keydown',key)
+      if (key === 21) {
+        this.scrollToPrevPage()
+      } else if (key === 22) {
+        this.scrollToNextPage()
+      }
     },
   },
 };

@@ -2,13 +2,13 @@
   <div id="animation-demo">
     <label>控制动画</label>
     <div class="toolbar">
-      <button @click="togglePlaying" class="toolbar-btn">
-        <span v-if="playing">暂停</span>
-        <span v-else>播放</span>
+      <button @click="togglePlaying" class="toolbar-btn" :focusable="true" :requestFocus="true">
+        <span v-if="playing" :duplicateParentState="true">暂停</span>
+        <span v-else :duplicateParentState="true">播放</span>
       </button>
-      <button @click="toggleDirection" class="toolbar-btn">
-        <span v-if="direction === 'horizon'">切换纵向</span>
-        <span v-else>切换为横向</span>
+      <button @click="toggleDirection" class="toolbar-btn" :focusable="true">
+        <span v-if="direction === 'horizon'" :duplicateParentState="true">切换纵向</span>
+        <span v-else :duplicateParentState="true">切换为横向</span>
       </button>
     </div>
     <div class="fullscreen">
@@ -18,11 +18,11 @@
     </div>
     <label>点赞笑脸动画:</label>
     <div class="toolbar">
-      <button @click="voteUp" class="toolbar-btn">
-        <span>点赞 👍</span>
+      <button @click="voteUp" class="toolbar-btn" :focusable="true">
+        <span :duplicateParentState="true">点赞 👍</span>
       </button>
-      <button @click="voteDown" class="toolbar-btn">
-        <span>踩 👎</span>
+      <button @click="voteDown" class="toolbar-btn" :focusable="true">
+        <span :duplicateParentState="true">踩 👎</span>
       </button>
     </div>
     <div class="vote-face-container center">

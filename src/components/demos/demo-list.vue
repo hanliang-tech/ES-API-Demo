@@ -1,11 +1,11 @@
 <template>
   <div id="demo-list">
     <div class="toolbar">
-      <button class="toolbar-btn" @click="scrollToNextPage">
-        <span>翻到下一页</span>
+      <button class="toolbar-btn" @click="scrollToNextPage" :focusable="true" :requestFocus="true">
+        <span :duplicateParentState="true">翻到下一页</span>
       </button>
-      <button class="toolbar-btn" @click="scrollToBottom">
-        <span>翻动到底部</span>
+      <button class="toolbar-btn" @click="scrollToBottom" :focusable="true">
+        <span :duplicateParentState="true">翻动到底部</span>
       </button>
       <p class="toolbar-text">列表元素数量：{{ dataSource.length }}</p>
     </div>
@@ -190,6 +190,7 @@ export default {
   #demo-list {
     flex: 1;
     padding: 12px;
+    width: 750px;
   }
 
   #demo-list #loading {
@@ -224,6 +225,7 @@ export default {
   }
 
   #demo-list .style-one-image {
+    width: 750px;
     height: 120px;
   }
 
@@ -244,6 +246,23 @@ export default {
   }
 
   #demo-list .style-two-image {
+    width: 375px;
     height: 140px;
+  }
+  .toolbar-btn {
+    width: 150px;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #40b883;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  .toolbar-btn span {
+    font-size: 18px;
+    text-align: center;
+    line-height: 46px;
+    color: #40b883;
+    focus-color: #000;
   }
 </style>

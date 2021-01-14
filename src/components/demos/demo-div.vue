@@ -131,8 +131,9 @@
 
   /* Specfic styles */
   .div-demo-1 {
-    display: flex;
+    width: 600px;
     height: 200px;
+    background-color: transparent;
     background-image: url('http://test-mp.hiliad.com/static/images/WX20201028-180320@2x.png');
     background-repeat: no-repeat;
   }
