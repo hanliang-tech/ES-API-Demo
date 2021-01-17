@@ -91,10 +91,11 @@ export default {
   },
   methods: {
     routeTo(url) {
-      this.$router.push(url)
+      // this.$router.push(url)
+      Vue.Native.callNative('MiniModule', 'execute', { action: '__AC_NEW_TAB__', data: JSON.stringify({ url }) });
     },
-    onFocus(e){
-      console.log("onFocus isFocused:"+e.isFocused)
+    onFocus(e) {
+      console.log("onFocus isFocused:" + e.isFocused);
     },
   }
 };

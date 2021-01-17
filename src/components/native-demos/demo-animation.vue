@@ -50,6 +50,8 @@
  *   repeatCount: 0,           // 动画的重复次数，0为不重复，-1 为一直重复不停，如果在数组中，整个动画的重复次数以第一个动画的值为准
  */
 
+import Vue from 'vue';
+import { getApp } from '../../util';
 import Loop from './animations/loop.vue';
 import VoteUp from './animations/vote-up.vue';
 import VoteDown from './animations/vote-down.vue';
@@ -78,6 +80,20 @@ export default {
     toggleDirection() {
       this.direction = this.direction === 'horizon' ? 'vertical' : 'horizon';
     },
+    backPress() {
+      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    },
+  },
+  mounted() {
+    this.app = getApp();
+    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
+  },
+  activated() {
+    this.app.$on('hardwareBackPress', this.backPress);
+  },
+  deactivated() {
+    this.app.$off('hardwareBackPress');
+    delete this.app;
   },
 };
 </script>

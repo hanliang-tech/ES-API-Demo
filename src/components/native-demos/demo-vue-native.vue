@@ -69,18 +69,7 @@
 import Vue from 'vue';
 import { getApp } from '../../util';
 
-
 export default {
-  async mounted() {
-    this.app = getApp();
-    // ref="rect" 可以移动到任一元素上测试尺寸，除了 measureInWindow 在 android 上拿不到，别的都可以正常获取。
-    const rect = await this.$refs.rect.getBoundingClientRect();
-    this.rect = `Container rect: ${JSON.stringify(rect)}`;
-  },
-  beforeDestroy() {
-    // 取消 mounted 里监听的自定义事件
-    delete this.app;
-  },
   data() {
     return {
       app: this.app,
@@ -89,6 +78,23 @@ export default {
     };
   },
   methods: {
+    backPress() {
+      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    },
+  },
+  async mounted() {
+    this.app = getApp();
+    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
+    // ref="rect" 可以移动到任一元素上测试尺寸，除了 measureInWindow 在 android 上拿不到，别的都可以正常获取。
+    const rect = await this.$refs.rect.getBoundingClientRect();
+    this.rect = `Container rect: ${JSON.stringify(rect)}`;
+  },
+  activated() {
+    this.app.$on('hardwareBackPress', this.backPress);
+  },
+  deactivated() {
+    this.app.$off('hardwareBackPress');
+    delete this.app;
   },
 };
 </script>

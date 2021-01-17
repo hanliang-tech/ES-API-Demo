@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import { getApp } from '../../util';
 export default {
   methods: {
     clickView() {
@@ -62,6 +64,22 @@ export default {
     stopPropagation(evt) {
       evt.stopPropagation();
     },
+    backPress() {
+      if (!this.dialogIsVisible) {
+        Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      }
+    },
+  },
+  mounted() {
+    this.app = getApp();
+    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
+  },
+  activated() {
+    this.app.$on('hardwareBackPress', this.backPress);
+  },
+  deactivated() {
+    this.app.$off('hardwareBackPress');
+    delete this.app;
   },
   data() {
     return {

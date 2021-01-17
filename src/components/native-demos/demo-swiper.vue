@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import { getApp } from '../../util';
 export default {
   data() {
@@ -67,9 +68,21 @@ export default {
   mounted() {
     this.app = getApp();
     this.$maxSlideIndex = this.$refs.swiper.$el.childNodes.length - 1;
+    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
+  },
+  activated() {
     this.app.$on('nativeOnKeyDown', this.listener);
+    this.app.$on('hardwareBackPress', this.backPress);
+  },
+  deactivated() {
+    this.app.$off('nativeOnKeyDown');
+    this.app.$off('hardwareBackPress');
+    delete this.app;
   },
   methods: {
+    backPress() {
+      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    },
     scrollToNextPage() {
       if (this.currentSlide < this.$maxSlideIndex) {
         this.currentSlide = this.currentSlideNum + 1;

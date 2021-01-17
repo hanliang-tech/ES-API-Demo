@@ -1,4 +1,5 @@
 import Menu from './menu.vue';
+import routeLoading from './routeLoading.vue';
 import demos from './components/demos';
 import nativeDemos from './components/native-demos';
 import esTvDemos from './components/es-tv-demos';
@@ -17,6 +18,10 @@ export default {
   routes: [
     {
       path: '/',
+      component: routeLoading,
+    },
+    {
+      path: '/menu',
       component: Menu,
     },
     ...Object.keys(demos).map(demoId => ({

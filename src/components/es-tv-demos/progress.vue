@@ -20,15 +20,13 @@
   </div>
 </template>
 <script>
-// import { getApp } from '../../util';
+import Vue from 'vue';
+import { getApp } from '../../util';
 
 export default {
   data() {
     return {
     };
-  },
-  mounted() {
-    console.log('onSeekBar mounted ');
   },
   methods: {
     focusChange(e) {
@@ -37,6 +35,20 @@ export default {
     seekChange(e) {
       console.log(`zhaopeng onSeekChange fromUser:${e.fromUser},progress:${e.progress}`);
     },
+    backPress() {
+      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    },
+  },
+  mounted() {
+    this.app = getApp();
+    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
+  },
+  activated() {
+    this.app.$on('hardwareBackPress', this.backPress);
+  },
+  deactivated() {
+    this.app.$off('hardwareBackPress');
+    delete this.app;
   },
 };
 </script>
