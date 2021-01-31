@@ -128,6 +128,7 @@ export default {
     font-size: 16px;
     color: #42b983;
     focus-color:#ff0000;
+    select-color:cyan
   }
 
   .listView  .textView{
@@ -135,6 +136,7 @@ export default {
     height: 40px;
     font-size: 16px;
     color: #42b983;
+    select-color:cyan;
     focus-color:#ff0000;
   }
 

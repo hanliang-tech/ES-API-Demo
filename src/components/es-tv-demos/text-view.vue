@@ -1,7 +1,7 @@
 <template>
   <div id="text-view">
     <div class="view-box"><text-view  class="text-view"  maxLines="1" ellipsizeMode="2" >这是超出后显示省略号的文本这是超出后显示省略号的文本</text-view></div>
-    <div class="view-box"><text-view  class="text-view" :select="true"  maxLines="1" ellipsizeMode="3"  >这是超出后可以滚动的文本这是超出后可以滚动的文本</text-view></div>
+    <div class="view-box"><text-view  class="text-view" :focusable=false :select="true"  maxLines="1" ellipsizeMode="3"  >这是超出后可以滚动的文本这是超出后可以滚动的文本</text-view></div>
     <div class="view-box"><text-view  class="text-view"   gravity="center">居中</text-view></div>
     <div class="view-box"><text-view class="text-view"     gravity="start">居前</text-view></div>
     <div class="view-box"><text-view class="text-view"    gravity="end">居后</text-view></div>
@@ -9,7 +9,6 @@
     <div class="view-box"><text-view class="text-view"     gravity="centerHorizontal|bottom">横向居中、纵向居下</text-view></div>
     <div class="view-box"><text-view class="text-view"     gravity="centerVertical">纵向居中</text-view></div>
     <div class="view-box"><text-view class="text-view"     gravity="centerVertical|end">纵向居中、横向居右</text-view></div>
-
   </div>
 </template>
 

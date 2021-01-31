@@ -5,17 +5,41 @@
     <p class="rowHead">横向列表</p>
     <ul
       class="row"
-      ref="list"
+      ref="list1"
       @endReached="onEndReached"
       @scroll="onScroll"
       :numberOfRows="dataCount"
       horizontal
+      requestLayoutOnUpdate
     >
       <li
         v-for="index in dataCount"
         :key="index"
       >
-        <div class="divBox" :focusable="true"><p>{{"item"+index}}</p></div>
+        <div class="divBox" :focusable="true">
+          <p :duplicateParentState="true">{{"item"+index}}</p>
+          <div class="mark" :duplicateParentState="true"></div>
+        </div>
+      </li>
+    </ul>
+
+    <ul
+      class="row"
+      ref="list2"
+      @endReached="onEndReached"
+      @scroll="onScroll"
+      :numberOfRows="dataCount"
+      horizontal
+      :focusMemory="false"
+      :makeChildVisibleClampForward="100"
+      :makeChildVisibleClampBackward="200"
+      @childFocus="onChildFocus"
+    >
+      <li
+        v-for="index in dataCount"
+        :key="index"
+      >
+        <div class="divBox" :focusable="true"><p :duplicateParentState="true">{{"item"+index}}</p></div>
       </li>
     </ul>
 
@@ -25,16 +49,27 @@
 <script>
 import Vue from 'vue';
 import { getApp } from '../../util';
+
 export default {
   data() {
     return {
       blockDirections: ['left', 'right'],
       dataCount: 100,
+      handler: -1,
     };
   },
   methods: {
     backPress() {
       Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    },
+    onChildFocus(e) {
+      const pos = e.child.position;
+      console.log(`onChildFocus index:${pos}`);
+      this.$refs.list1.scrollToIndex(0, pos, false, 0, 0);
+      clearTimeout(this.handler);
+      this.handler = setTimeout(() => {
+        Vue.Native.callUIFunction(this.$refs.list1, 'setSelectChildPosition', [pos]);
+      }, 16);
     },
   },
   mounted() {
@@ -48,6 +83,7 @@ export default {
     this.app.$off('hardwareBackPress');
     delete this.app;
   },
+
 };
 </script>
 
@@ -91,11 +127,21 @@ export default {
     padding: 5px;
     focus-scale:1.0;
     focus-background-color:red;
+    select-background-color:yellow;
+  }
+
+  .listView .divBox .mark{
+    width: 30px;
+    height: 10px;
+    background-color: transparent;
+    select-background-color:blue;
   }
 
   .listView .divBox p{
     font-size: 16px;
     color: #42b983;
+    focus-color: white;
+    select-color:red;
   }
 
 </style>

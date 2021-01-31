@@ -38,7 +38,8 @@ export default {
   },
 
   mounted() {
-    // Vue.Native.callNative('FocusModule', 'setDefaultFocusBorderEnable', true);
+    Vue.Native.callNative('FocusModule', 'setDefaultFocusBorderEnable', true);
+    Vue.Native.callNative('FocusModule', 'setDefaultFocusInnerBorderEnable', false);
   },
   created() {
     console.log('page------------------index');
