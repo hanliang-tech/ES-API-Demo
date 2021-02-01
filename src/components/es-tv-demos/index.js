@@ -5,6 +5,7 @@ import listView from './list.vue';
 import loading from './loading.vue';
 import progress from './progress.vue';
 import divGradient from './div-gradient-bg.vue';
+import imgTransition from './img-transition.vue';
 
 const demos = {
   focusBasic: {
@@ -34,6 +35,10 @@ const demos = {
   divGradient: {
     name: 'Div渐变背景',
     component: divGradient,
+  },
+  divGradient: {
+    name: '渐变动画背景',
+    component: imgTransition,
   },
 
 };

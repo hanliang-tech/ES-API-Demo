@@ -7,6 +7,7 @@ import loading from './components/register/loading';
 import SeekBar from './components/register/seek-bar';
 import ScrollView from './components/register/ScrollView';
 import TextView from './components/register/TextView';
+import TransitionImageView from './components/register/TransitionImageView';
 import App from './app.vue';
 import routes from './routes';
 import { setApp } from './util';
@@ -25,6 +26,7 @@ Vue.use(loading);
 Vue.use(ScrollView);
 Vue.use(TextView);
 Vue.use(SeekBar);
+Vue.use(TransitionImageView);
 
 const router = new VueRouter(routes);
 
