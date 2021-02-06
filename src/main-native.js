@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HippyVueNativeComponents from '@hippy4tv/vue-native-components';
-import VideoComponent from './components/register/video';
+import VideoComponent from './components/register/Video';
 import coverFlow from './components/register/coverFlow';
 import loading from './components/register/loading';
 import SeekBar from './components/register/seek-bar';
 import ScrollView from './components/register/ScrollView';
 import TextView from './components/register/TextView';
 import TransitionImageView from './components/register/TransitionImageView';
+import QrView from './components/register/QrView'
+import VideoView from './components/register/Video'
 import App from './app.vue';
 import routes from './routes';
 import { setApp } from './util';
@@ -27,6 +29,8 @@ Vue.use(ScrollView);
 Vue.use(TextView);
 Vue.use(SeekBar);
 Vue.use(TransitionImageView);
+Vue.use(QrView);
+Vue.use(VideoView);
 
 const router = new VueRouter(routes);
 
