@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="loading">
+  <div class="loadingView">
     <loading-view style="width: 100px;height: 100px;"/>
     <loading-view color="#0000FF" style="width: 120px;height: 120px;" />
   </div>
@@ -26,7 +26,7 @@ export default {
 <style>
 
 
-  .loading{
+  .loadingView{
     width: 1920px;
     height: 1080px;
     background-color: green;
