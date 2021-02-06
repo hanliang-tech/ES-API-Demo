@@ -29,7 +29,7 @@ export default {
     activated() {
         this.$refs.bg.setNextImage(this.images[0])
         setInterval(() => {
-            var r = Math.random();
+            var r = Math.random() * 10;
             if(r > 5){
                 // setNextImage: 过渡到图片
                 this.$refs.bg.setNextImage(this.images[++index % this.images.length])
