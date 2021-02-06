@@ -71,7 +71,7 @@ function registerVideo() {
         });
       },
       seek(data, callback) {
-        Vue.Native.callUIFunction(this.$refs.videoView, 'seek', data, (res) => {
+        Vue.Native.callUIFunction(this.$refs.videoView, 'seek', [data], (res) => {
           callback(res)
         });
       },
@@ -106,6 +106,26 @@ function registerVideo() {
       },
       isPlay(data, callback) {
         Vue.Native.callUIFunction(this.$refs.videoView, 'isPlay', data, (res) => {
+          callback(res)
+        });
+      },
+      canSetSpeed(data, callback) {
+        Vue.Native.callUIFunction(this.$refs.videoView, 'canSetSpeed', data, (res) => {
+          callback(res)
+        });
+      },
+      setSpeed(data, callback) {
+        Vue.Native.callUIFunction(this.$refs.videoView, 'setSpeed', data, (res) => {
+          callback(res)
+        });
+      },
+      getCurrentPosition(data, callback) {
+        Vue.Native.callUIFunction(this.$refs.videoView, 'getCurrentPosition', data, (res) => {
+          callback(res)
+        });
+      },
+      getDuration(data, callback) {
+        Vue.Native.callUIFunction(this.$refs.videoView, 'getDuration', data, (res) => {
           callback(res)
         });
       },

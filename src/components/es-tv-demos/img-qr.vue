@@ -4,4 +4,3 @@
     <qr-view style="width:200; height:200;" content="http://www.xxxx.com/"/>
   </div>
 </template>
-    

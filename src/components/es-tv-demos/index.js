@@ -7,6 +7,7 @@ import progress from './progress.vue';
 import divGradient from './div-gradient-bg.vue';
 import imgTransition from './img-transition.vue';
 import imgQr from './img-qr.vue';
+import videoView from './video.vue';
 
 const demos = {
   focusBasic: {
@@ -44,6 +45,10 @@ const demos = {
   imgQr: {
     name: '二维码',
     component: imgQr,
+  },
+  videoView: {
+    name: '视频组件',
+    component: videoView,
   },
 
 };
