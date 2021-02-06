@@ -89,15 +89,9 @@ export default {
     // 初始化时曝光，因为子元素加载需要时间，建议延迟 500 毫秒后执行
     setTimeout(() => this.exposureReport(0), 500);
     this.app = getApp();
-    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
-  },
-  activated() {
     this.app.$on('hardwareBackPress', this.backPress);
   },
-  deactivated() {
-    this.app.$off('hardwareBackPress');
-    delete this.app;
-  },
+
   methods: {
     backPress() {
       Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');

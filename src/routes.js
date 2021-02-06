@@ -9,7 +9,7 @@ export default {
    * 阻止 Android 上 Back 键触发页面返回
    * 默认值为 false，就是开启 Back 键返回。
    */
-  disableAutoBack: false,
+  disableAutoBack: true,
 
   /**
    * 定义路由

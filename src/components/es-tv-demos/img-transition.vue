@@ -26,7 +26,7 @@ export default {
         }
         
     },
-    activated() {
+    mounted() {
         this.$refs.bg.setNextImage(this.images[0])
         setInterval(() => {
             var r = Math.random();
@@ -42,4 +42,3 @@ export default {
     }
 }
 </script>
-    

@@ -23,15 +23,9 @@ export default {
   },
   mounted() {
     this.app = getApp();
-    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
-  },
-  activated() {
     this.app.$on('hardwareBackPress', this.backPress);
   },
-  deactivated() {
-    this.app.$off('hardwareBackPress');
-    delete this.app;
-  },
+
 };
 </script>
 <style scope>

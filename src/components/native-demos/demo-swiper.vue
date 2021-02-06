@@ -68,16 +68,8 @@ export default {
   mounted() {
     this.app = getApp();
     this.$maxSlideIndex = this.$refs.swiper.$el.childNodes.length - 1;
-    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
-  },
-  activated() {
-    this.app.$on('nativeOnKeyDown', this.listener);
     this.app.$on('hardwareBackPress', this.backPress);
-  },
-  deactivated() {
-    this.app.$off('nativeOnKeyDown');
-    this.app.$off('hardwareBackPress');
-    delete this.app;
+    this.app.$on('nativeOnKeyDown', this.listener);
   },
   methods: {
     backPress() {

@@ -35,15 +35,12 @@ export default {
 </script>
 
 <style scoped>
-  .routeLoading {
-    background-color: #000;
-  }
   .routeLoading .loading {
     position: absolute;
     width: 1920px;
     height: 1080px;
     z-index: 2;
-    background-color: rgba(0,0,0,.5);
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: center;

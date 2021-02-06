@@ -10,8 +10,8 @@
       <li :focusable=false>
         <p class="feature-title">基础组件 Demos</p>
       </li>
-      <li :focusable=false>
-        <div class="feature-item">
+      <li class="feature-item" :focusable=false>
+        <div class="feature-item" :clipChildren="false">
           <div v-for="(feature, index) in featureList" @focus="onFocus" :key="feature.id" :focusable=true :focusScale="1.1" :requestFocus="index === 0" @click="routeTo(`/demo/${feature.id}`)" class="button">
             <p>{{ feature.name }}</p>
           </div>
@@ -46,11 +46,13 @@ import Vue from 'vue';
 import demos from './components/demos';
 import nativeDemos from './components/native-demos';
 import esTvDemos from './components/es-tv-demos';
+import { getApp } from './util';
 
 export default {
   name: 'App',
   data() {
     return {
+      exitTime: 0,
       featureList: Object.keys(demos).map(demoId => ({
         id: demoId,
         name: demos[demoId].name,
@@ -83,11 +85,9 @@ export default {
     // 取消 exit() 的注释，即可阻止退出，在前面可以加上退出条件
     // exit();
   },
-  activated() {
-    console.log('api------activated');
-  },
-  deactivated() {
-    console.log('api------deactivated');
+  mounted() {
+    this.app = getApp();
+    this.app.$on('hardwareBackPress', this.backPress);
   },
   methods: {
     routeTo(url) {
@@ -96,6 +96,19 @@ export default {
     },
     onFocus(e) {
       console.log("onFocus isFocused:" + e.isFocused);
+    },
+    backPress() {
+      const now = new Date().getTime() / 1000
+      console.log('backPress', now)
+      clearTimeout(this.exitTimer)
+      if (now - this.exitTime < 1) {
+        Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      } else {
+        this.exitTime = now
+        this.exitTimer = setTimeout(() => {
+          Vue.Native.callNative('MiniModule', 'execute', {action: '__AC_TOAST__', text: '双击返回键退出APP'});
+        }, 1000)
+      }
     },
   }
 };

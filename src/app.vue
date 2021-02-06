@@ -38,6 +38,7 @@ export default {
   },
 
   mounted() {
+    Vue.Native.callNative('DeviceEventModule', 'setListenBackPress', true);
     Vue.Native.callNative('FocusModule', 'setDefaultFocusBorderEnable', true);
     Vue.Native.callNative('FocusModule', 'setDefaultFocusInnerBorderEnable', false);
   },
@@ -61,8 +62,6 @@ export default {
 <style scoped>
   #root {
     flex: 1;
-    height: 100%;
-    overflow: hidden;
     background-color: #fff;
     /*padding: 50px;*/
   }
