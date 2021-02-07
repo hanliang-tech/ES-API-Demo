@@ -3,7 +3,7 @@
       <!-- 视频组件 -->
     <div class="video-wrap">
       <video-view class='video' src="http://ft-oss.fangtangtv.com/ssp/license/video6.mp4" ref="video" :controls="true"
-      @video-load='hideLoading' @video-buffer-start='showLoading' @video-buffer-end="hideLoading" @/>
+      @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" />
       <div v-show="videoLoading" class="loading">
         <loading-view class="loading-icon" color="#ff6f2e"></loading-view>
       </div>
@@ -12,6 +12,9 @@
       <div class="btn-item" @click="play" :focusable=true :focusScale="1.1"><p>{{playPauseText}}</p></div>
       <div class="btn-item" @click="showController" :focusable=true :focusScale="1.1"><p>显示进度条</p></div>
       <div class="btn-item" @click="forwardThenSeconds" :focusable=true :focusScale="1.1"><p>快进20秒</p></div>
+    </div>
+    <div class="state-info">
+      <p>{{videoInfoText}}</p>
     </div>
   </div>
 
@@ -26,6 +29,7 @@ export default {
     return {
       playPauseText: '暂停',
       videoLoading: true,
+      videoInfoText:'',
     };
   },
   mounted() {
@@ -47,6 +51,21 @@ export default {
           this.playPauseText = play? '暂停' : '播放';
         })
       }, 50)
+    },
+
+    onVideoLoaded(){
+      this.hideLoading()
+      this.videoInfoText += '\n开始播放...'
+    },
+
+    onVideoBufferStart(){
+      this.showLoading()
+      this.videoInfoText += '\n开始缓冲...'
+    },
+
+    onVideoBufferEnd(){
+      this.hideLoading()
+      this.videoInfoText += '\n结束缓冲...'
     },
 
     showLoading(){
@@ -121,6 +140,15 @@ export default {
     color: #fff;
     text-align: center;
     line-height: 50px;
+  }
+  .videoContainer .state-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .videoContainer .state-info p {
+    font-size: 15px;
+    color: #fff;
   }
 
 </style>

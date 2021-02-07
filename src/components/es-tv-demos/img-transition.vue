@@ -27,10 +27,15 @@ export default {
         'http://fitimg.fangtangtv.com/tab/tab1block1-4bg.jpg',
       ],
       colors: [
+        '#AC78F5',
         -1,
+        '#5AF285',
         -16711681,
+        '#F5C94D',
         -12303292,
+        '#1A99D9',
         -65281,
+        '#DB5B3F',
       ]
     };
 
