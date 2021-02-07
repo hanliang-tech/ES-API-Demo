@@ -2,8 +2,8 @@
   <div class='container videoContainer'>
       <!-- 视频组件 -->
     <div class="video-wrap">
-      <video-view class='video' src="http://ft-oss.fangtangtv.com/ssp/license/video6.mp4" ref="video" :controls="true"
-      @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" />
+      <video-view class='video' src="http://ft-oss.fangtangtv.com/ssp/license/video6.mp4" ref="video" :controls="true" :progressUpdateInterval=1000
+      @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" @video-play="onVideoPlay" @video-pause="onVideoPause" @video-progress-change="onVideoProgressChange"/>
       <div v-show="videoLoading" class="loading">
         <loading-view class="loading-icon" color="#ff6f2e"></loading-view>
       </div>
@@ -12,9 +12,6 @@
       <div class="btn-item" @click="play" :focusable=true :focusScale="1.1"><p>{{playPauseText}}</p></div>
       <div class="btn-item" @click="showController" :focusable=true :focusScale="1.1"><p>显示进度条</p></div>
       <div class="btn-item" @click="forwardThenSeconds" :focusable=true :focusScale="1.1"><p>快进20秒</p></div>
-    </div>
-    <div class="state-info">
-      <p>{{videoInfoText}}</p>
     </div>
   </div>
 
@@ -29,7 +26,6 @@ export default {
     return {
       playPauseText: '暂停',
       videoLoading: true,
-      videoInfoText:'',
     };
   },
   mounted() {
@@ -55,17 +51,31 @@ export default {
 
     onVideoLoaded(){
       this.hideLoading()
-      this.videoInfoText += '\n开始播放...'
+      console.log('加载成功...');
+    },
+
+    onVideoPlay(){
+      this.hideLoading()
+      console.log('播放...');
+    },
+
+    onVideoPause(){
+      console.log('暂停...');
+    },
+
+    onVideoProgressChange(e){
+      console.log('aaaa', e);
+      console.log('onVideoProgressChange position:' + e.position + ', duration:' + e.duration);
     },
 
     onVideoBufferStart(){
       this.showLoading()
-      this.videoInfoText += '\n开始缓冲...'
+      console.log('开始缓冲...');
     },
 
     onVideoBufferEnd(){
       this.hideLoading()
-      this.videoInfoText += '\n结束缓冲...'
+      console.log('结束缓冲...');
     },
 
     showLoading(){
