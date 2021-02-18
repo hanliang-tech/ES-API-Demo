@@ -1,14 +1,13 @@
 <template>
 
 
-  <div class="focusTest" :clipChildren="false">
+  <div class="focusTest" :clipChildren="false" :blockRootFocus="blockRoot">
 
     <p class="rowHead">焦点UI</p>
     <div class="row" @childFocus="onChildFocus">
       <div class="divBox" :focusable="true" :enableFocusBorder="true" focusBorderColor="#0000ff">
         <p >焦点边框</p>
       </div>
-
       <div class="divBox" focusView>
         <p >放大效果</p>
       </div>
@@ -24,6 +23,7 @@ import { getApp } from '../../util';
 export default {
   data() {
     return {
+      blockRoot: false,
     };
   },
   mounted() {
@@ -32,6 +32,9 @@ export default {
     this.app.$on('dispatchKeyEvent', (e) => {
       console.log(`dispatchKeyEvent e is${e}`);
     });
+    setTimeout(() => {
+      this.blockRoot = false;
+    }, 2000);
   },
   methods: {
     backPress() {
@@ -73,6 +76,7 @@ export default {
     width: 200px;
     height: 50px;
     background-color: transparent;
+    focus-background-color: red;
     align-items: center;
     justify-content: center;
     border-style: solid;

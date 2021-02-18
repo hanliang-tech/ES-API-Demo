@@ -10,7 +10,7 @@
       @scroll="onScroll"
       :numberOfRows="dataCount"
       horizontal
-      requestLayoutOnUpdate
+      :enableSelectOnFocus="false"
     >
       <li
         v-for="index in dataCount"
@@ -30,10 +30,11 @@
       @scroll="onScroll"
       :numberOfRows="dataCount"
       horizontal
-      :focusMemory="false"
+      :focusMemory="true"
       :makeChildVisibleClampForward="100"
       :makeChildVisibleClampBackward="200"
       @childFocus="onChildFocus"
+      :enableSelectOnFocus="false"
     >
       <li
         v-for="index in dataCount"
@@ -54,7 +55,7 @@ export default {
   data() {
     return {
       blockDirections: ['left', 'right'],
-      dataCount: 100,
+      dataCount: 10,
       handler: -1,
     };
   },

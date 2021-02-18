@@ -3,12 +3,7 @@
 
   <div class="divg">
     <div  :enableFocusBorder="true" :focusable="true" style="width: 300px;height: 200px; background-color: transparent "
-          :gradientBackground="{
-        type:0,
-        shape:0,
-        colors:['#ff0000','#00ff00'],
-        cornerRadii4:[0,5,20,0]
-     }">
+          :gradientBackground="gradientBackground">
     </div>
     <!-----cornerRadius:10 --->
     <!-----top-left, top-right, bottom-right, bottom-left --->
@@ -18,7 +13,18 @@
 <script>
 import Vue from 'vue';
 import { getApp } from '../../util';
+
 export default {
+  data() {
+    return {
+      gradientBackground: {
+        type: 0,
+        shape: 0,
+        colors: ['#ff0000', '#00ff00'],
+        cornerRadii4: [0, 5, 20, 0],
+      },
+    };
+  },
   methods: {
     backPress() {
       Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
