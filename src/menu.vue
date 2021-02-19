@@ -13,7 +13,7 @@
       <li class="feature-item" :focusable=false>
         <div class="feature-item" :clipChildren="false">
           <div v-for="(feature, index) in featureList" @focus="onFocus" :key="feature.id" :focusable=true :focusScale="1.1" :requestFocus="index === 0" @click="routeTo(`/demo/${feature.id}`)" class="button">
-            <p>{{ feature.name }}</p>
+            <p duplicateParentState>{{ feature.name }}</p>
           </div>
         </div>
       </li>
@@ -23,7 +23,7 @@
       <li :focusable=false>
         <div class="feature-item">
           <div v-for="feature in nativeFeatureList" :key="feature.id" :focusable=true :focusScale="1.1" @click="routeTo(`/demo/${feature.id}`)" class="button">
-            <p>{{ feature.name }}</p>
+            <p duplicateParentState>{{ feature.name }}</p>
           </div>
         </div>
       </li>
@@ -33,7 +33,7 @@
       <li :focusable=false>
         <div class="feature-item">
           <div v-for="feature in esFeatureList" :key="feature.id" :focusable=true :focusScale="1.1" @click="routeTo(`/demo/${feature.id}`)" class="button">
-            <p>{{ feature.name }}</p>
+            <p duplicateParentState>{{ feature.name }}</p>
           </div>
         </div>
       </li>
@@ -138,26 +138,6 @@ export default {
   color: #555;
   text-align: center;
   line-height: 70px;
-}
-
-.feature-item .button {
-  margin: 10px;
-  border-style: solid;
-  border-color: #40b883;
-  border-width: 2px;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  background-color: transparent;
-}
-.feature-item .button p {
-  height: 56px;
-  line-height: 56px;
-  font-size: 20px;
-  color: #40b883;
-  text-align: center;
-  text-align-vertical: center;
 }
 
 #version-info {

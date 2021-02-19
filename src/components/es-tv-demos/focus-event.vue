@@ -6,10 +6,10 @@
     <p class="rowHead">焦点UI</p>
     <div class="row" @childFocus="onChildFocus">
       <div class="divBox" :focusable="true" :enableFocusBorder="true" focusBorderColor="#0000ff">
-        <p >焦点边框</p>
+        <p duplicateParentState>焦点边框</p>
       </div>
       <div class="divBox" focusView>
-        <p >放大效果</p>
+        <p duplicateParentState>放大效果</p>
       </div>
     </div>
 
@@ -53,7 +53,6 @@ export default {
   .focusTest{
     width: 1920px;
     height: 1080px;
-    background-color: white;
     padding: 25px;
   }
 
@@ -62,6 +61,8 @@ export default {
     color: #555;
     text-align: left;
     line-height: 70px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   .focusTest .row{
@@ -76,7 +77,7 @@ export default {
     width: 200px;
     height: 50px;
     background-color: transparent;
-    focus-background-color: red;
+    focus-background-color: #40b883;
     align-items: center;
     justify-content: center;
     border-style: solid;
@@ -90,6 +91,7 @@ export default {
   .focusTest .divBox p{
     font-size: 20px;
     color: #42b983;
+    focus-color: #fff;
   }
 
 </style>

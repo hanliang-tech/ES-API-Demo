@@ -1,18 +1,18 @@
 <template>
 
 
-  <div class="listView">
+  <div class="focus-basic">
     <div class="row" :clipChildren="true">
       <div class="simpleBox" :focusable="true" :focusScale="1.1" >
         <p >焦点属性</p>
       </div>
 
       <div class="simpleBox" focusView >
-        <p >focusView属性:激活焦点、白色边框、默认放大倍数</p>
+        <p >focusView属性:激活焦点、边框、默认放大倍数</p>
       </div>
-      //TODO 使用类来控制焦点
+      <!-- 使用类来控制焦点 -->
       <div class="divBox" :focusable="true" >
-        <p >使用类来控制焦点</p>
+        <p duplicateParentState>使用类来控制焦点</p>
       </div>
 
       <div class="divBoxClass" :focusable="true">
@@ -47,25 +47,23 @@ export default {
 <style>
 
 
-  .listView{
+  .focus-basic{
     width: 1920px;
     height: 1080px;
-    background-color: black;
     padding: 25px;
   }
 
-  .listView .row{
+  .focus-basic .row{
     width: 1920px;
     height: 100px;
     padding: 25px;
     flex-direction: row;
     justify-content: flex-start;
-    margin-top: 20px;
   }
 
-  .listView .simpleBox{
+  .focus-basic .simpleBox{
     width: 250px;
-    height: 80px;
+    height: 60px;
     background-color: transparent;
     align-items: center;
     justify-content: center;
@@ -77,9 +75,9 @@ export default {
     padding: 5px;
   }
 
-  .listView .divBox{
+  .focus-basic .divBox{
     width: 250px;
-    height: 80px;
+    height: 60px;
     background-color: transparent;
     align-items: center;
     justify-content: center;
@@ -89,15 +87,19 @@ export default {
     border-radius: 10px;
     margin-left: 20px;
     padding: 5px;
-    focus-scale:1.2;
+    focus-scale:1.1;
     focus-border-style:solid;
     focus-border-radius: 5px;
-    focus-background-color:#ff0000;
+    focus-background-color:#40b883;
+  }
+  .focus-basic .divBox p {
+    color: #42b983;
+    focus-color: #fff;
   }
 
-  .listView .divBoxClass{
+  .focus-basic .divBoxClass{
     width: 250px;
-    height: 80px;
+    height: 84px;
     align-items: center;
     justify-content: center;
     border-style: solid;
@@ -105,33 +107,35 @@ export default {
     border-width: 2px;
     border-radius: 10px;
     margin-left: 20px;
+    focus-background-color: #40b883;
   }
 
-  .listView .divBoxTest{
-    width: 250px;
+  .focus-basic .divBoxTest{
+    width: 246px;
     height: 40px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     border-radius: 10px;
     background-color: greenyellow;
-    focus-background-color: white;
+    focus-background-color: #4068b8;
   }
 
-  .listView  p{
+  .focus-basic p {
     font-size: 16px;
     color: #42b983;
-    focus-color:#ff0000;
-    select-color:cyan
+    text-align: center;
+    focus-color: #fff;
+    select-color: cyan
   }
 
-  .listView  .textView{
-    width: 250px;
+  .focus-basic  .textView{
+    width: 246px;
     height: 40px;
     font-size: 16px;
     color: #42b983;
     select-color:cyan;
-    focus-color:#ff0000;
+    focus-color:#fff;
   }
 
 </style>

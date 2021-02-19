@@ -26,6 +26,6 @@ const STYLE_5 = {
     subInfo: ['六眼神魔  5234播放'],
   },
 };
-const mockData = [STYLE_5, STYLE_1, STYLE_2, STYLE_1, STYLE_2, STYLE_1, STYLE_2, STYLE_5, STYLE_1];
+const mockData = [STYLE_5, STYLE_1, STYLE_2, STYLE_1, STYLE_2, STYLE_1, STYLE_2, STYLE_5, STYLE_1, STYLE_2, STYLE_5, STYLE_1];
 
 export default mockData;

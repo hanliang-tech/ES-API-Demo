@@ -1,7 +1,7 @@
 <template>
   <div class="container routeLoading">
     <div class="loading">
-      <loading-view class="loading-icon" color="#ff6f2e"></loading-view>
+      <loading-view class="loading-icon" color="#40b883"></loading-view>
     </div>
   </div>
 </template>

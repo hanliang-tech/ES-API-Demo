@@ -29,7 +29,11 @@ export default {
 };
 </script>
 <style scope>
-
+  #text-view {
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+  }
   #text-view .view-box {
     width: 300px;
     padding: 10px;
@@ -37,6 +41,7 @@ export default {
     border-width: 2px;
     border-color: #40b883;
     margin-bottom: 40px;
+    border-radius: 10px;
   }
   #text-view .view-box .text-view {
     height: 50px;

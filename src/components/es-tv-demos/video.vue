@@ -3,15 +3,18 @@
       <!-- 视频组件 -->
     <div class="video-wrap">
       <video-view class='video' src="http://ft-oss.fangtangtv.com/ssp/license/video6.mp4" ref="video" :controls="true" :progressUpdateInterval=1000
-      @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" @video-play="onVideoPlay" @video-pause="onVideoPause" @video-progress-change="onVideoProgressChange"/>
+                  :controlStyle="{colors:['#00000000', '#000000']}"
+                  :seekStyle="{seekBackgroundColor:'#50FFFFFF', seekProgressColor:'#ff6f2e', seekRadius:5.0, seekHeight:5, seekThumbSize:20, seekThumbColor:'#ffffff'}"
+                  @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" @video-play="onVideoPlay"
+                  @video-pause="onVideoPause" @video-progress-change="onVideoProgressChange"/>
       <div v-show="videoLoading" class="loading">
         <loading-view class="loading-icon" color="#ff6f2e"></loading-view>
       </div>
     </div>
     <div class="video-btn">
-      <div class="btn-item" @click="play" :focusable=true :focusScale="1.1"><p>{{playPauseText}}</p></div>
-      <div class="btn-item" @click="showController" :focusable=true :focusScale="1.1"><p>显示进度条</p></div>
-      <div class="btn-item" @click="forwardThenSeconds" :focusable=true :focusScale="1.1"><p>快进20秒</p></div>
+      <div class="button" @click="play" :focusable=true :focusScale="1.1"><p duplicateParentState>{{playPauseText}}</p></div>
+      <div class="button" @click="showController" :focusable=true :focusScale="1.1"><p duplicateParentState>显示进度条</p></div>
+      <div class="button" @click="forwardThenSeconds" :focusable=true :focusScale="1.1"><p duplicateParentState>快进20秒</p></div>
     </div>
   </div>
 
@@ -106,7 +109,6 @@ export default {
   .videoContainer {
     width: 1920px;
     height:1080px;
-    background-color: dimgray;
     display:flex;
     justify-content:center;
     align-items: center;
@@ -138,19 +140,6 @@ export default {
     flex-direction: row;
     justify-content: center;
   }
-  .videoContainer .video-btn .btn-item {
-    margin: 10px;
-    width: 100px;
-    height: 50px;
-    background-color: darkorange;
-    border-radius: 10px;
-  }
-  .videoContainer .video-btn .btn-item p {
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-    line-height: 50px;
-  }
   .videoContainer .state-info {
     display: flex;
     flex-direction: row;
@@ -159,6 +148,9 @@ export default {
   .videoContainer .state-info p {
     font-size: 15px;
     color: #fff;
+  }
+  .videoContainer .button p {
+    color: #000;
   }
 
 </style>

@@ -24,6 +24,7 @@
         v-for="n in dataSource"
         :key="n"
         :style="{backgroundColor: 4278222848 + 100 * n}"
+        class="swiper-slide"
       >
         <p>I'm Slide {{ n + 1 }}</p>
       </swiper-slide>
@@ -118,6 +119,9 @@ export default {
 #demo-swiper {
   flex: 1;
 }
+#demo-swiper .toolbar {
+  padding-top: 20px;
+}
 
 #demo-swiper #swiper {
   flex: 1;
@@ -142,5 +146,14 @@ export default {
 
 #demo-swiper .dot.hightlight {
   background-color: limegreen
+}
+#demo-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#demo-swiper .swiper-slide p {
+  font-size: 30px;
+  color: #fff;
 }
 </style>

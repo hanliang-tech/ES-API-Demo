@@ -9,7 +9,7 @@ export default Vue.component('style-five', {
         {{ itemBean.title }}
     </p>
     <div class="style-five-image-container">
-        <img :src="itemBean.picUrl" class="image" />
+        <img :src="itemBean.picUrl" class="image style-five-image" />
     </div>
     <div class="tag-line">
       <p class="normal-text">

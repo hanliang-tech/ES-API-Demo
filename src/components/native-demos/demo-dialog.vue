@@ -104,6 +104,7 @@ export default {
   align-items: center;
   flex-direction: column;
   flex: 1;
+  padding: 50px;
 }
 
 .dialog-demo-button-1 {
@@ -138,6 +139,9 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dialog-demo-close-btn {
@@ -145,8 +149,10 @@ export default {
   height: 200px;
   margin-top: 300px;
   margin-left: 860px;
-  background-color: red;
+  background-color: #f1f1f1;
   border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dialog-demo-close-btn-text {

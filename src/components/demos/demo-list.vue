@@ -1,14 +1,17 @@
 <template>
   <div id="demo-list">
     <div class="toolbar">
-      <button class="toolbar-btn" @click="scrollToNextPage" :focusable="true" :requestFocus="true">
-        <span :duplicateParentState="true">翻到下一页</span>
+      <button class="toolbar-btn button" @click="scrollToNextPage" :focusable="true" :requestFocus="true">
+        <p :duplicateParentState="true">翻到下一页</p>
       </button>
-      <button class="toolbar-btn" @click="scrollToBottom" :focusable="true">
-        <span :duplicateParentState="true">翻动到底部</span>
+      <button class="toolbar-btn button" @click="scrollToTop" :focusable="true">
+        <p :duplicateParentState="true">翻动到顶部</p>
       </button>
-      <p class="toolbar-text">列表元素数量：{{ dataSource.length }}</p>
+      <button class="toolbar-btn button" @click="scrollToBottom" :focusable="true">
+        <p :duplicateParentState="true">翻动到底部</p>
+      </button>
     </div>
+    <div class="toolbar"><p class="toolbar-text">列表元素数量：{{ dataSource.length }}</p></div>
     <!--
       *** numberOfRows 是 iOS 渲染列表的必备参数，它的值是 ul 中 li 的数量***
 
@@ -21,9 +24,11 @@
     <ul
       id="list"
       ref="list"
-      @endReached="onEndReached"
+      @loadMore="onEndReached"
+      :preload="5"
       @scroll="onScroll"
       :numberOfRows="dataSource.length"
+      :clipChildren="false"
     >
       <!--
         li 有两个参数是一定要加上的。
@@ -38,10 +43,13 @@
         :key="index"
         :type="ui.style"
         @layout="onItemLayout"
+        :focusable=false
       >
-        <style-one v-if="ui.style == 1" :itemBean="ui.itemBean" />
-        <style-two v-if="ui.style == 2" :itemBean="ui.itemBean" />
-        <style-five v-if="ui.style == 5" :itemBean="ui.itemBean" />
+        <div class="li-item" :focusable=true :focusScale="1.05">
+          <style-one v-if="ui.style == 1" :itemBean="ui.itemBean" />
+          <style-two v-if="ui.style == 2" :itemBean="ui.itemBean" />
+          <style-five v-if="ui.style == 5" :itemBean="ui.itemBean" />
+        </div>
       </li>
     </ul>
     <p id="loading" v-show="loadingState">{{ loadingState }}</p>
@@ -189,6 +197,15 @@ export default {
       const { list } = this.$refs;
       list.scrollToIndex(0, list.childNodes.length - 1);
     },
+    scrollToTop() {
+      if (!Vue.Native) {
+        /* eslint-disable-next-line no-alert */
+        alert('This method is only supported in Native environment.');
+        return;
+      }
+      const { list } = this.$refs;
+      list.scrollToIndex(0, 0);
+    }
   },
 };
 </script>
@@ -196,14 +213,31 @@ export default {
 <style scoped>
   #demo-list {
     flex: 1;
-    padding: 12px;
-    width: 750px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #demo-list #loading {
-    font-size: 11px;
+    font-size: 20px;
     color: #aaa;
     align-self: center;
+  }
+
+  #demo-list #list {
+    flex: 1;
+    background-color: white;
+  }
+
+  #demo-list #list li {
+    width: 850px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  #demo-list .li-item {
+    background-color: transparent;
   }
 
   #demo-list .article-title {
@@ -256,20 +290,20 @@ export default {
     width: 375px;
     height: 140px;
   }
-  .toolbar-btn {
-    width: 150px;
-    height: 50px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #40b883;
-    border-radius: 8px;
+  #demo-list .style-five-image {
+    width: 750px;
+  }
+
+  .toolbar {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     margin-bottom: 20px;
   }
-  .toolbar-btn span {
-    font-size: 18px;
-    text-align: center;
-    line-height: 46px;
-    color: #40b883;
-    focus-color: #000;
+  .toolbar-btn {
+    width: 150px;
   }
 </style>

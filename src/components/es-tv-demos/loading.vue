@@ -2,8 +2,7 @@
 
 
   <div class="loadingView">
-    <loading-view style="width: 100px;height: 100px;"/>
-    <loading-view color="#0000FF" style="width: 120px;height: 120px;" />
+    <loading-view color="#40b883" style="width: 120px;height: 120px;" />
   </div>
 </template>
 
@@ -25,16 +24,12 @@ export default {
 </script>
 <style>
 
-
   .loadingView{
     width: 1920px;
     height: 1080px;
-    background-color: green;
     padding: 50px;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
-    align-content: center;
-    flex-direction: row;
   }
 
 </style>

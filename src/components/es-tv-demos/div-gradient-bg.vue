@@ -20,7 +20,7 @@ export default {
       gradientBackground: {
         type: 0,
         shape: 0,
-        colors: ['#ff0000', '#00ff00'],
+        colors: ['#40b883', '#4068b8'],
         cornerRadii4: [0, 5, 20, 0],
       },
     };
@@ -43,12 +43,9 @@ export default {
   .divg{
     width: 1920px;
     height: 1080px;
-    background-color: black;
     padding: 50px;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
-    align-content: center;
-    flex-direction: row;
   }
 
 </style>

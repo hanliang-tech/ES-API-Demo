@@ -2,13 +2,13 @@
   <div id="animation-demo">
     <label>控制动画</label>
     <div class="toolbar">
-      <button @click="togglePlaying" class="toolbar-btn" :focusable="true" :requestFocus="true">
-        <span v-if="playing" :duplicateParentState="true">暂停</span>
-        <span v-else :duplicateParentState="true">播放</span>
+      <button @click="togglePlaying" class="toolbar-btn button" :focusable="true" :requestFocus="true">
+        <p v-if="playing" :duplicateParentState="true">暂停</p>
+        <p v-else :duplicateParentState="true">播放</p>
       </button>
-      <button @click="toggleDirection" class="toolbar-btn" :focusable="true">
-        <span v-if="direction === 'horizon'" :duplicateParentState="true">切换纵向</span>
-        <span v-else :duplicateParentState="true">切换为横向</span>
+      <button @click="toggleDirection" class="toolbar-btn button" :focusable="true">
+        <p v-if="direction === 'horizon'" :duplicateParentState="true">切换纵向</p>
+        <p v-else :duplicateParentState="true">切换为横向</p>
       </button>
     </div>
     <div class="fullscreen">
@@ -18,11 +18,11 @@
     </div>
     <label>点赞笑脸动画:</label>
     <div class="toolbar">
-      <button @click="voteUp" class="toolbar-btn" :focusable="true">
-        <span :duplicateParentState="true">点赞 👍</span>
+      <button @click="voteUp" class="toolbar-btn button" :focusable="true">
+        <p :duplicateParentState="true">点赞 👍</p>
       </button>
-      <button @click="voteDown" class="toolbar-btn" :focusable="true">
-        <span :duplicateParentState="true">踩 👎</span>
+      <button @click="voteDown" class="toolbar-btn button" :focusable="true">
+        <p :duplicateParentState="true">踩 👎</p>
       </button>
     </div>
     <div class="vote-face-container center">
@@ -95,6 +95,7 @@ export default {
 <style scope>
 #animation-demo {
   flex: 1;
+  padding: 50px;
 }
 
 #animation-demo .vote-icon {
@@ -107,5 +108,14 @@ export default {
 
 #animation-dmeo .vote-face-containe {
   height: 200px;
+}
+#animation-demo .toolbar {
+  justify-content: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+#animation-demo .toolbar p {
+  color: #000;
 }
 </style>

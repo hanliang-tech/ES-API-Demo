@@ -76,7 +76,7 @@ export default {
   .loop-red {
     justify-content: center;
     align-items: center;
-    background-color: red;
+    background-color: #40b883;
     width: 200px;
     height: 80px;
   }
@@ -84,7 +84,7 @@ export default {
   .loop-blue {
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    background-color: #4068b8;
     width: 160px;
     height: 50px;
   }

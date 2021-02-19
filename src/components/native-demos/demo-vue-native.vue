@@ -95,7 +95,7 @@ export default {
 <style scope>
   #demo-vue-native {
     flex: 1;
-    padding: 12px;
+    padding: 50px;
     overflow-y: scroll;
   }
 

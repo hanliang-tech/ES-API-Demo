@@ -3,46 +3,48 @@
 
   <div class="listView">
     <p class="rowHead">横向列表</p>
-    <ul
-      class="row"
-      ref="list1"
-      @endReached="onEndReached"
-      @scroll="onScroll"
-      :numberOfRows="dataCount"
-      horizontal
-      :enableSelectOnFocus="false"
-    >
-      <li
-        v-for="index in dataCount"
-        :key="index"
+    <div class="row">
+      <ul
+        ref="list1"
+        @endReached="onEndReached"
+        @scroll="onScroll"
+        :numberOfRows="dataCount"
+        horizontal
+        :enableSelectOnFocus="false"
       >
-        <div class="divBox" :focusable="true">
-          <p :duplicateParentState="true">{{"item"+index}}</p>
-          <div class="mark" :duplicateParentState="true"></div>
-        </div>
-      </li>
-    </ul>
+        <li
+          v-for="index in dataCount"
+          :key="index"
+        >
+          <div class="divBox" :focusable="true">
+            <p :duplicateParentState="true">{{"item"+index}}</p>
+            <div class="mark" :duplicateParentState="true"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-    <ul
-      class="row"
-      ref="list2"
-      @endReached="onEndReached"
-      @scroll="onScroll"
-      :numberOfRows="dataCount"
-      horizontal
-      :focusMemory="true"
-      :makeChildVisibleClampForward="100"
-      :makeChildVisibleClampBackward="200"
-      @childFocus="onChildFocus"
-      :enableSelectOnFocus="false"
-    >
-      <li
-        v-for="index in dataCount"
-        :key="index"
+    <div class="row">
+      <ul
+        ref="list2"
+        @endReached="onEndReached"
+        @scroll="onScroll"
+        :numberOfRows="dataCount"
+        horizontal
+        :focusMemory="true"
+        :makeChildVisibleClampForward="100"
+        :makeChildVisibleClampBackward="200"
+        @childFocus="onChildFocus"
+        :enableSelectOnFocus="false"
       >
-        <div class="divBox" :focusable="true"><p :duplicateParentState="true">{{"item"+index}}</p></div>
-      </li>
-    </ul>
+        <li
+          v-for="index in dataCount"
+          :key="index"
+        >
+          <div class="divBox" :focusable="true"><p :duplicateParentState="true">{{"item"+index}}</p></div>
+        </li>
+      </ul>
+    </div>
 
   </div>
 </template>
@@ -88,24 +90,26 @@ export default {
   .listView{
     width: 1920px;
     height: 1080px;
-    background-color: black;
-    padding: 25px;
   }
 
   .listView .rowHead {
     font-size: 30px;
-    color: white;
+    color: #555;
     text-align: left;
     line-height: 70px;
+    padding: 50px;
   }
 
-  .listView .row{
-    width: 1600px;
+  .listView .row {
+    width: 1920px;
     height: 100px;
-    padding: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .listView .row ul{
     flex-direction: row;
     justify-content: flex-start;
-    margin-top: 20px;
   }
 
   .listView .divBox{
@@ -121,22 +125,22 @@ export default {
     margin-left: 20px;
     padding: 5px;
     focus-scale:1.0;
-    focus-background-color:red;
-    select-background-color:yellow;
+    focus-background-color: #40b883;
+    select-background-color: #4068b8;
   }
 
   .listView .divBox .mark{
     width: 30px;
-    height: 10px;
+    height: 5px;
     background-color: transparent;
-    select-background-color:blue;
+    select-background-color: white;
   }
 
   .listView .divBox p{
     font-size: 16px;
     color: #42b983;
     focus-color: white;
-    select-color:red;
+    select-color: white;
   }
 
 </style>

@@ -41,6 +41,7 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 50px;
   }
 
   .button-demo-1 {
@@ -59,13 +60,17 @@ export default {
   }
 
   .button-demo-1-image {
-    width: 216px;
-    height: 58px;
+    width: 300px;
+    height: 300px;
+    margin-top: 30px;
   }
 
   .button-demo-1.is-active {
+    background-color: #4068b8;
+    border-color: #4068b8;
+  }
+  .button-demo-1.is-active .button-text {
     color: white;
-    background-color: red;
   }
 
   .button-demo-1.is-pressing {

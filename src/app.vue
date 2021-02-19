@@ -61,7 +61,6 @@ export default {
   #root {
     flex: 1;
     background-color: #fff;
-    /*padding: 50px;*/
   }
   .title {
     font-size: 20px;
@@ -71,5 +70,26 @@ export default {
     font-weight: bold;
     background-color: #40b883;
     color: #ffffff;
+  }
+  .button {
+    width: 200px;
+    margin: 10px;
+    border-style: solid;
+    border-color: #40b883;
+    border-width: 2px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    focus-background-color: #40b883;
+  }
+  .button p {
+    height: 56px;
+    line-height: 56px;
+    font-size: 20px;
+    color: #40b883;
+    text-align: center;
+    text-align-vertical: center;
+    focus-color: #fff;
   }
 </style>

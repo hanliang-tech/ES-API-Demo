@@ -53,12 +53,10 @@ export default {
   .progress{
     width: 1920px;
     height: 1080px;
-    background-color: green;
+    background-color: black;
     padding: 50px;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
-    align-content: center;
-    flex-direction: row;
   }
 
   .progress .column_player_progress {
