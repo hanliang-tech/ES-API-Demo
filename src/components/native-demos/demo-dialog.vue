@@ -12,7 +12,6 @@
       v-if="dialogIsVisible"
       @show="onShow"
       @requestClose="onClose">
-      <!-- iOS 平台上 dialog 必须只有一个子节点 -->
       <!-- dialog 里的布局比较奇怪，碰到问题请联系终端同学 -->
       <div class="dialog-demo-wrapper">
         <!-- 空白区域点击关闭 -->

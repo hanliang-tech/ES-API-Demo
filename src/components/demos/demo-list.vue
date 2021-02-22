@@ -12,15 +12,6 @@
       </button>
     </div>
     <div class="toolbar"><p class="toolbar-text">列表元素数量：{{ dataSource.length }}</p></div>
-    <!--
-      *** numberOfRows 是 iOS 渲染列表的必备参数，它的值是 ul 中 li 的数量***
-
-      iOS 上有个渲染上屏时机的优化，它不是发送一个 li 渲染一个 li，而是先更新 numberOfRows 告诉终端将有几个列表元素要
-      渲染了，然后再去添加 li，达到那个数量再统一上屏。
-      对于都是静态的 li，hippy-vue 会自动计算好 li 数量（这可以通过计算子节点数量获得），但是对于从数据中动态生成的 li 就没有办法了，
-      因为 hippy-vue 作为 Vue 的一个终端渲染层，Vue 只是向它发送 createNode 的指令，而根本无法知道将有多少个数据会生成 li。
-      所以这里就需要开发者手动填一下，值就是：静态的 li 数量 + 将生成 li 的数据数量。
-    -->
     <ul
       id="list"
       ref="list"

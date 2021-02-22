@@ -16,7 +16,6 @@
       <ul-refresh class="ul-refresh">
         <p class="ul-refresh-text">{{ refreshText }}</p>
       </ul-refresh>
-      <!-- numberOfRows is necessary by iOS first screen rendering -->
       <ul
         id="list"
         ref="list"
