@@ -19,6 +19,9 @@
           <div class="divBox" :focusable="true">
             <p :duplicateParentState="true">{{"item"+index}}</p>
             <div class="mark" :duplicateParentState="true"></div>
+            <div class="markNormal"  showOnState="normal"></div>
+            <!--<div class="markNormal"  showOnState="focused"></div>-->
+            <!--<div class="markNormal"  showOnState="normal"></div>-->
           </div>
         </li>
       </ul>
@@ -57,6 +60,7 @@ export default {
   data() {
     return {
       blockDirections: ['left', 'right'],
+      state: ['normal'],
       dataCount: 10,
       handler: -1,
     };
@@ -134,6 +138,12 @@ export default {
     height: 5px;
     background-color: transparent;
     select-background-color: white;
+  }
+
+  .listView .divBox .markNormal{
+    width: 30px;
+    height: 5px;
+    background-color: yellow;
   }
 
   .listView .divBox p{
