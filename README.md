@@ -1,112 +1,57 @@
-# hippy-vue-demo
+# ES-API-Demo
 
-> The project was initialized with vue-cli 4.1.1. For how to migrate see following section.
+> extent screen 简称 （ES） 容器可以理解为一个精简版的浏览器，针对TV端特殊的遥控器交互模式，从底层做了大量优化工作，在启动速度、可复用列表组件、渲染效率、动画速度、
+  网络通信等等都提供了超高的性能表现。提供了接近 Web 的开发体验。目前上层支持了Vue界面框架，前端开发人员可以通过它，将前端代码转换为终端的原生
+  指令，进行原生终端 App 的开发。
 
-![Hippy Group](https://img.shields.io/badge/group-Hippy-blue.svg)
 
-## Web project setup
+## 安装
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 开发调试流程 
+以下操作都需要通过cmd/terminal窗口进入到项目所在目录下
 
-### Compiles and minifies for production
+### 运行调试
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+npm run dev
+npm run debug
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Migrate vue-cli created project to Hippy.
-
-### Add new depenedencies
-
-* @hippy/vue
-* @hippy/vue-native-components
-* @hippy/vue-router
-* @hippy/vue-css-loader
-
-### Important files
-
-[./src/main-native.js](./src/main-native.js) - Entry file for Hippy
-
-### New build scripts
-
-Update the `script` fields in `package.json`:
-
-```json
-{
-  "scripts": {
-    ...
-    "hippy:debug": "hippy-debug",
-    "hippy:dev": dev.jsuild": ""
-  }
-}
+### adb连接电视
 ```
+adb connect 192.168.X.X
+```
+> 电视ip
 
-## Debug the JS codes in native
+### 安装容器
+```
+adb install -r /Downloads/browser-dev-debug.apk
+```
+> 下载的开发版容器所在目录，安装后打开应用
 
-### Build and watch for development
+### 容器设置DEBUG_HOST
+```
+adb shell am broadcast -a com.hili.bct.test.CHANGE_DEBUG_HOST --es host 192.168.x.x:38989
+```
+> 此处是本机ip，执行后用遥控器退出容器，再次打开即可看到组件demo界面 修改代码电视实时刷新
+
+### 如何看错误性的log
+用chrome浏览器打开chrome://inspect/ 勾选Discover network targets，配置加入本机38989端口，例如：192.168.x.x:38989，然后inspect查看log调试
+
+### 调试中不刷新如何解决
+如果调试中出现修改代码保存后电视不刷新现象，需要检查adb连接情况或者设备是否在线
+在cmd/terminal窗口输入 adb devices ，如果没有连接中设备需要输入 adb connect 192.168.X.X(电视ip) 重新连接，如果设备显示 offline 需要重启电视
+
+## 发布流程 
 
 ```
-npm run hippy:dev
+npm run vendor
+npm run esbuild
 ```
+> 找到根目录下 /dist/android 文件夹，打包成.zip文件, 并进入开发者平台上传代码包
 
-> Take care, for dev target, the demo project has defined a [alias to local hippy-vue](scripts/dev.js#L96) in line 96 to line 130, you should remove it first if you don't use it.
+## [开发者平台](http://mp.es.hiliad.com/)
 
-### Start a debug server
-
-Keep the `hippy:dev` running and open anther terminal, and execute:
-
-```
-npm run hippy:debug
-```
-
-### Start debug with debugger
-
-For Android, open `chrome://inspect`, `UNCHECK` the `Discover USB devices` option and `CHECK` `Discover network targets` option, click on the `Configuration` button and make sure `localhost:38989` in the list.
-
-Then you will see the cellphone in below list, click on the `Inspect` will popup the debugger window.
-
-For iOS we need Safari, at first need the `Develop` menu appear(`Develop` menu toggle is available in `Preference` -> `Advanced` -> `Show Develop menu in menu bar`). Then you will see the Simulator or Cellphone in the `Develop` menu, point to the device and click on the JSContext to open debugger window.
-
-### Build the native
-
-Build the native codes in `ios` with [Xcode](https://developer.apple.com/xcode/), or `android` with [Android Studio](https://developer.android.com/studio).
-
-Start to run the native app after build and connect the debug server.
-
-## Integrate the js files to native app
-
-### Build the production js files
-
-```
-npm run hippy:vendor # Build the vendor js
-npm run hippy:build # Build the index js
-```
-
-The output files will be placed at `dist/android` and `dist/ios` folders.
-
-### Integrate built output js to native
-
-#### iOS
-
-```
-cp dist/ios/* ../ios-demo/res/ # Copy the built js files to native.
-```
-
-### Android
-
-```
-cp dist/ios/* ../android-demo/res/ # Copy the built js files to native.
-```
+成为开发者详情请参考 [[开发者说明]](http://developer.es.hiliad.com/developer/apply/)
