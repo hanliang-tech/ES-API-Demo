@@ -8,6 +8,7 @@ import divGradient from './div-gradient-bg.vue';
 import imgTransition from './img-transition.vue';
 import imgQr from './img-qr.vue';
 import videoView from './video.vue';
+import coverFlow from './cover-flow';
 
 const demos = {
   focusBasic: {
@@ -49,6 +50,10 @@ const demos = {
   videoView: {
     name: '视频组件',
     component: videoView,
+  },
+  CoverFlow: {
+    name: 'CoverFlow',
+    component: coverFlow,
   },
 
 };

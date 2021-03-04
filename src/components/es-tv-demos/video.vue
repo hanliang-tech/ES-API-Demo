@@ -2,7 +2,7 @@
   <div class='container videoContainer'>
       <!-- 视频组件 -->
     <div class="video-wrap">
-      <video-view class='video' src="http://ft-oss.fangtangtv.com/ssp/license/video6.mp4" ref="video" :controls="true" :progressUpdateInterval=1000
+      <video-view class='video' src="http://ft-oss.fangtangtv.com/bilibili/source/f34cfffd42a08e4fd3aafae2e4cb5210.MP4" ref="video" :controls="true" :progressUpdateInterval=1000
                   :controlStyle="{colors:['#00000000', '#000000']}"
                   :seekStyle="{seekBackgroundColor:'#50FFFFFF', seekProgressColor:'#ff6f2e', seekRadius:5.0, seekHeight:5, seekThumbSize:20, seekThumbColor:'#ffffff'}"
                   @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" @video-play="onVideoPlay"
