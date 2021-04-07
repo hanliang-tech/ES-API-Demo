@@ -9,6 +9,7 @@ import imgTransition from './img-transition.vue';
 import imgQr from './img-qr.vue';
 import videoView from './video.vue';
 import coverFlow from './cover-flow';
+import danMu from './danmu';
 
 const demos = {
   focusBasic: {
@@ -54,6 +55,10 @@ const demos = {
   CoverFlow: {
     name: 'CoverFlow',
     component: coverFlow,
+  },
+  DanMu: {
+    name: '弹幕',
+    component: danMu,
   },
 
 };

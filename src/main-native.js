@@ -10,6 +10,7 @@ import TextView from './components/register/TextView';
 import TransitionImageView from './components/register/TransitionImageView';
 import QrView from './components/register/QrView'
 import VideoView from './components/register/Video'
+import DanMuView from './components/register/DanMu'
 import App from './app.vue';
 import routes from './routes';
 import { setApp } from './util';
@@ -31,6 +32,7 @@ Vue.use(SeekBar);
 Vue.use(TransitionImageView);
 Vue.use(QrView);
 Vue.use(VideoView);
+Vue.use(DanMuView);
 
 const router = new VueRouter(routes);
 
