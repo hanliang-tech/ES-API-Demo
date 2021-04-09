@@ -57,7 +57,7 @@ export default {
 
     sendImage(){
         this.$refs.danmu.addDM({
-            text:'文本弹幕',
+            text:'图片弹幕',
 
             textSize: 22,
             textColor: '#FFFF00',
