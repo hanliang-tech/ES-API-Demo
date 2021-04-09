@@ -1,9 +1,10 @@
 <template>
   <div class="my_container">
       <danmu-view class="danmu" ref="danmu"></danmu-view>
-      <div class="video-btn">
-          <div class="button" @click="sendText" :focusable=true :focusScale="1.1" :requestFocus='true'><p duplicateParentState>发送文字弹幕</p></div>
-          <div class="button" @click="sendImage" :focusable=true :focusScale="1.1"><p duplicateParentState>发送图片弹幕</p></div>
+      <div class="btn-group">
+          <div class="button" @click="sendText" :focusable=true :focusScale="1.1" :requestFocus='true'><p duplicateParentState>普通文字弹幕</p></div>
+          <div class="button" @click="sendTextDecorator" :focusable=true :focusScale="1.1" ><p duplicateParentState>文字修饰弹幕</p></div>
+          <div class="button" @click="sendImage" :focusable=true :focusScale="1.1"><p duplicateParentState>图片弹幕</p></div>
           <div class="button" @click="changeState" :focusable=true :focusScale="1.1"><p duplicateParentState>{{stateText}}</p></div>
       </div>
   </div>
@@ -13,7 +14,8 @@
 <script>
 import Vue from 'vue';
 import { getApp } from '@/util';
-import SocketIO from './socketio'
+
+let pause = false;
 
 export default {
   data(){
@@ -31,18 +33,54 @@ export default {
     },
 
     sendText(){
-        this.$refs.danmu.addDM()
+        this.$refs.danmu.addDM({
+            text:'文本弹幕',
+            textColor: '#000000',
+        })
+    },
 
-        let sio = new SocketIO();
-        Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    sendTextDecorator(){
+        this.$refs.danmu.addDM({
+            text:'文本弹幕',
+
+            textSize: 22,
+            textColor: '#FFFF00',
+
+            backgroundColor: '#55000000',
+            backgroundRadius: 25,
+
+            borderColor: "#D2C0AB",
+            borderRadius: 25,
+            borderWidth: 2,
+        })
     },
 
     sendImage(){
-        console.log('send image')
+        this.$refs.danmu.addDM({
+            text:'图片弹幕',
+
+            textSize: 22,
+            textColor: '#FFFF00',
+
+            backgroundColor: '#55000000',
+            backgroundRadius: 25,
+
+            borderColor: "#D2C0AB",
+            borderRadius: 25,
+            borderWidth: 2,
+
+            imageUri: "http://test-mp.hiliad.com/static/images/speaker_xm.png",
+        })
     },
 
     changeState(){
-        console.log('change state')
+        if(pause){
+            this.$refs.danmu.resume()
+        }else{
+            this.$refs.danmu.pause()
+        }
+        this.stateText = pause ? '暂停' : '恢复';
+        pause = !pause;
     },
   }
 }
@@ -55,15 +93,15 @@ export default {
         display:flex;
         justify-content:center;
         align-items: center;
+        background-color: dimgrey;
     }
 
     .my_container .danmu{
         width: 1920px;
         height: 1000px;
-        background-color: #000;
     }
 
-  .my_container .video-btn {
+  .my_container .btn-group {
     display: flex;
     flex-direction: row;
     justify-content: center;
