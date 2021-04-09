@@ -5,7 +5,8 @@
           <div class="button" @click="sendText" :focusable=true :focusScale="1.1" :requestFocus='true'><p duplicateParentState>普通文字弹幕</p></div>
           <div class="button" @click="sendTextDecorator" :focusable=true :focusScale="1.1" ><p duplicateParentState>文字修饰弹幕</p></div>
           <div class="button" @click="sendImage" :focusable=true :focusScale="1.1"><p duplicateParentState>图片弹幕</p></div>
-          <div class="button" @click="changeState" :focusable=true :focusScale="1.1"><p duplicateParentState>{{stateText}}</p></div>
+          <div class="button" @click="showOrHide" :focusable=true :focusScale="1.1"><p duplicateParentState>{{showHideText}}</p></div>
+          <div class="button" @click="pauseOrResume" :focusable=true :focusScale="1.1"><p duplicateParentState>{{pauseResumeText}}</p></div>
       </div>
   </div>
   
@@ -16,11 +17,13 @@ import Vue from 'vue';
 import { getApp } from '@/util';
 
 let pause = false;
+let show = true;
 
 export default {
   data(){
       return {
-          stateText:'暂停'
+          pauseResumeText:'暂停',
+          showHideText:'隐藏',
       }
   },
   mounted() {
@@ -73,14 +76,24 @@ export default {
         })
     },
 
-    changeState(){
+    pauseOrResume(){
         if(pause){
             this.$refs.danmu.resume()
         }else{
             this.$refs.danmu.pause()
         }
-        this.stateText = pause ? '暂停' : '恢复';
+        this.pauseResumeText = pause ? '暂停' : '恢复';
         pause = !pause;
+    },
+
+    showOrHide(){
+        if(show){
+            this.$refs.danmu.hide()
+        }else{
+            this.$refs.danmu.show()
+        }
+        this.showHideText = show ? '显示' : '隐藏';
+        show = !show;
     },
   }
 }

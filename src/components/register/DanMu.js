@@ -13,13 +13,23 @@ function registerDanMuView() {
           callback(res)
         });
       },
-      pause(data, callback) {
-        Vue.Native.callUIFunction(this.$refs.danmu, 'pause', [data], (res) => {
+      pause(callback) {
+        Vue.Native.callUIFunction(this.$refs.danmu, 'pause', [], (res) => {
           callback(res)
         });
       },
-      resume(data, callback) {
-        Vue.Native.callUIFunction(this.$refs.danmu, 'resume', [data], (res) => {
+      resume(callback) {
+        Vue.Native.callUIFunction(this.$refs.danmu, 'resume', [], (res) => {
+          callback(res)
+        });
+      },
+      show(callback) {
+        Vue.Native.callUIFunction(this.$refs.danmu, 'show', [], (res) => {
+          callback(res)
+        });
+      },
+      hide(callback) {
+        Vue.Native.callUIFunction(this.$refs.danmu, 'hide', [], (res) => {
           callback(res)
         });
       },
