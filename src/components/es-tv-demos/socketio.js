@@ -1,20 +1,19 @@
 import Vue from 'vue';
-// import Native from '@hippy4tv/vue/src/runtime/native';
-// import {
-//   getApp,
-//   warn,
-//   isFunction,
-// } from '@hippy4tv/vue/src/util';
+import {
+  getApp,
+  warn,
+  isFunction,
+} from '../util';
 
 const READY_STATE_CONNECTING = 0;
 const READY_STATE_OPEN = 1;
 const READY_STATE_CLOSING = 2;
 const READY_STATE_CLOSED = 3;
 
-const WEB_SOCKET_MODULE_NAME = 'SocketIoModule';
-const WEB_SOCKET_NATIVE_EVENT = 'SocketIOEvents';
+const SOCKET_IO_MODULE_NAME = 'SocketIoModule';
+const SOCKET_IO_NATIVE_EVENT = 'SocketIOEvents';
 
-let websocketEventHub;
+let SocketIoEventHub;
 let app;
 
 /**
@@ -40,70 +39,54 @@ class SocketIo {
    *                                          string is assumed.
    * @param {Object} headers - Http headers will append to connection.
    */
-  constructor(url, protocals, extrasHeaders) {
+  constructor(url, debug) {
     if (!app) {
       app = getApp();
     }
 
     this.url = url;
     this.readyState = READY_STATE_CONNECTING;
-    this.webSocketCallbacks = {};
-    this.onWebSocketEvent = this.onWebSocketEvent.bind(this);
-    const headers = {
-      ...extrasHeaders,
-    };
+    this.SocketIoCallbacks = {};
+    this.onSocketIoEvent = this.onSocketIoEvent.bind(this);
 
-    if (!websocketEventHub) {
-      websocketEventHub = app.$on(WEB_SOCKET_NATIVE_EVENT, this.onWebSocketEvent);
+    if (!SocketIoEventHub) {
+      SocketIoEventHub = app.$on(SOCKET_IO_NATIVE_EVENT, this.onSocketIoEvent);
     }
 
     if (!url || typeof url !== 'string') {
-      throw new TypeError('Invalid WebSocket url');
-    }
-
-    if (Array.isArray(protocals) && protocals.length > 0) {
-      headers['Sec-WebSocket-Protocol'] = protocals.join(',');
-    } else if (typeof protocals === 'string') {
-      headers['Sec-WebSocket-Protocol'] = protocals;
+      throw new TypeError('Invalid Socket url');
     }
 
     const params = {
-      headers,
       url,
     };
 
-    Vue.Native.callNativeWithPromise(WEB_SOCKET_MODULE_NAME, 'connect', params).then((resp) => {
+    console.log('new socket.io', SOCKET_IO_MODULE_NAME)
+    console.log('new socket.io', params)
+    Vue.Native.callNativeWithPromise(SOCKET_IO_MODULE_NAME, 'connect', params).then((resp) => {
       if (!resp || resp.code !== 0 || typeof resp.id !== 'number') {
-        warn('Fail to create websocket connection', resp);
+        warn('Fail to create SocketIo connection', resp);
         return;
       }
 
-      this.webSocketId = resp.id;
+      console.log('[socket.io] connect success')
+      this.socketId = resp.id;
     });
   }
 
   /**
    * Closes the WebSocket connection or connection attempt, if any.
    * If the connection is already CLOSED, this method does nothing.
-   *
-   * @param {number} [code] - A numeric value indicating the status code explaining
-   *                          why the connection is being closed. If this parameter
-   *                          is not specified, a default value of 1005 is assumed.
-   *                          See the list of status codes of CloseEvent for permitted values.
-   * @param {string} [reason] - A human-readable string explaining why the connection
-   *                            is closing. This string must be no longer than 123 bytes
-   *                            of UTF-8 text (not characters).
    */
-  close(code, reason) {
+  disconnect() {
     if (this.readyState !== READY_STATE_OPEN) {
       return;
     }
 
+    console.log('[socket.io] disconnect')
     this.readyState = READY_STATE_CLOSING;
-    Native.callNative(WEB_SOCKET_MODULE_NAME, 'close', {
-      id: this.webSocketId,
-      code,
-      reason,
+    Vue.Native.callNative(SOCKET_IO_MODULE_NAME, 'disconnect', {
+      id: this.socketId
     });
   }
 
@@ -112,59 +95,41 @@ class SocketIo {
    *
    * @param {string} data - The data to send to the server. Hippy supports string type only.
    */
-  send(data) {
+  emit(event_name, data) {
     if (this.readyState !== READY_STATE_OPEN) {
       warn('WebSocket is not connected');
       return;
     }
 
-    if (typeof data !== 'string') {
-      throw new TypeError(`Unsupported websocket data type: ${typeof data}`);
-    }
-
-    Native.callNative(WEB_SOCKET_MODULE_NAME, 'send', {
-      id: this.webSocketId,
+    Vue.Native.callNative(SOCKET_IO_MODULE_NAME, 'emit', {
+      id: this.socketId,
+      event: event_name,
       data,
     });
+    console.log(`[socket.io] emit: ${event_name}, data:`, data)
   }
 
   /**
    * Set an EventHandler that is called when the WebSocket connection's readyState changes to OPEN;
    */
-  set onopen(callback) {
-    this.webSocketCallbacks.onOpen = callback;
+  on(event_name, callback) {
+    this.SocketIoCallbacks[event_name] = callback;
+    console.log(`[socket.io] listen: ${event_name}`)
+    if (event_name === 'connect' || event_name === 'disconnect' || event_name === 'connect_error') return
+    Vue.Native.callNative(SOCKET_IO_MODULE_NAME, 'on', {
+      id: this.socketId,
+      event: event_name
+    });
   }
 
   /**
-   * Set an EventHandler that is called when the WebSocket connection's readyState
-   * changes to CLOSED.
-   */
-  set onclose(callback) {
-    this.webSocketCallbacks.onClose = callback;
-  }
-
-  /**
-   * Set an EventHandler that is called when a message is received from the server.
-   */
-  set onerror(callback) {
-    this.webSocketCallbacks.onError = callback;
-  }
-
-  /**
-   * Set an event handler property is a function which gets called when an error
-   * occurs on the WebSocket.
-   */
-  set onmessage(callback) {
-    this.webSocketCallbacks.onMessage = callback;
-  }
-
-  /**
-   * WebSocket events handler from Native.
+   * WebSocket events handler from Vue.Native.
    *
    * @param {Object} param - Native response.
    */
-  onWebSocketEvent(param) {
-    if (typeof param !== 'object' || param.id !== this.webSocketId) {
+  onSocketIoEvent(param) {
+    console.log(`[socket.io] onSocketIoEvent:`, param)
+    if (typeof param !== 'object' || param.id !== this.socketId) {
       return;
     }
 
@@ -172,15 +137,14 @@ class SocketIo {
     if (typeof eventType !== 'string') {
       return;
     }
-
-    if (eventType === 'onOpen') {
+    if (eventType === 'connect') {
       this.readyState = READY_STATE_OPEN;
-    } else if (eventType === 'onClose') {
+    } else if (eventType === 'disconnect') {
       this.readyState = READY_STATE_CLOSED;
-      app.$off(WEB_SOCKET_NATIVE_EVENT);
+      app.$off(SOCKET_IO_NATIVE_EVENT);
     }
 
-    const callback = this.webSocketCallbacks[eventType];
+    const callback = this.SocketIoCallbacks[eventType];
     if (isFunction(callback)) {
       callback(param.data);
     }
