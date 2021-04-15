@@ -3,7 +3,7 @@
       <!-- content: 二维码要显示的内容 -->
     <qr-view style="width:200px; height:200px;" content="http://www.xxxx.com/" />
     <div style="width:100px; "/>
-    <qr-view style="width:200px; height:200px;" content="http://www.xxxx.com/" :optimize=false />
+    <qr-view style="width:200px; height:200px;" content="http://www.xxxx.com/" :optimize=true />
   </div>
 </template>
 

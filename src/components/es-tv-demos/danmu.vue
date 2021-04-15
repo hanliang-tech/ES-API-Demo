@@ -9,7 +9,7 @@
           <div class="button" @click="pauseOrResume" :focusable=true :focusScale="1.1"><p duplicateParentState>{{pauseResumeText}}</p></div>
       </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -37,14 +37,14 @@ export default {
 
     sendText(){
         this.$refs.danmu.addDM({
-            text:'文本弹幕',
+            text:'文本弹幕123456',
             textColor: '#000000',
         })
     },
 
     sendTextDecorator(){
         this.$refs.danmu.addDM({
-            text:'文本弹幕',
+            text:'文本弹幕123456',
 
             textSize: 22,
             textColor: '#FFFF00',
@@ -62,7 +62,7 @@ export default {
 
     sendImage(){
         this.$refs.danmu.addDM({
-            text:'图片弹幕',
+            text:'图片弹幕123456',
 
             textSize: 25,
             textColor: '#D8BEA4',
