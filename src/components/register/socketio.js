@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import {
   getApp,
-  warn,
   isFunction,
-} from '../util';
+} from '../../util';
 
 const READY_STATE_CONNECTING = 0;
 const READY_STATE_OPEN = 1;
@@ -39,7 +38,7 @@ class SocketIo {
    *                                          string is assumed.
    * @param {Object} headers - Http headers will append to connection.
    */
-  constructor(url, debug) {
+  constructor(url) {
     if (!app) {
       app = getApp();
     }
@@ -57,15 +56,15 @@ class SocketIo {
       throw new TypeError('Invalid Socket url');
     }
 
-    const params = {
+    this.params = {
       url,
     };
 
     console.log('new socket.io', SOCKET_IO_MODULE_NAME)
-    console.log('new socket.io', params)
-    Vue.Native.callNativeWithPromise(SOCKET_IO_MODULE_NAME, 'connect', params).then((resp) => {
+    console.log('new socket.io', this.params)
+    Vue.Native.callNativeWithPromise(SOCKET_IO_MODULE_NAME, 'connect', this.params).then((resp) => {
       if (!resp || resp.code !== 0 || typeof resp.id !== 'number') {
-        warn('Fail to create SocketIo connection', resp);
+        console.log('Fail to create SocketIo connection', resp);
         return;
       }
 
@@ -90,6 +89,19 @@ class SocketIo {
     });
   }
 
+  connect(url) {
+    if (url) this.params.url = url
+    Vue.Native.callNativeWithPromise(SOCKET_IO_MODULE_NAME, 'connect', this.params).then((resp) => {
+      if (!resp || resp.code !== 0 || typeof resp.id !== 'number') {
+        console.log('Fail to create SocketIo connection', resp);
+        return;
+      }
+
+      console.log('[socket.io] connect success')
+      this.socketId = resp.id;
+    });
+  }
+
   /**
    * Enqueues the specified data to be transmitted to the server over the WebSocket connection.
    *
@@ -97,7 +109,7 @@ class SocketIo {
    */
   emit(event_name, data) {
     if (this.readyState !== READY_STATE_OPEN) {
-      warn('WebSocket is not connected');
+      console.log('WebSocket is not connected');
       return;
     }
 

@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HippyVueNativeComponents from '@hippy4tv/vue-native-components';
-import VideoComponent from './components/register/Video';
 import coverFlow from './components/register/coverFlow';
 import loading from './components/register/loading';
 import SeekBar from './components/register/seek-bar';
@@ -9,7 +8,7 @@ import ScrollView from './components/register/ScrollView';
 import TextView from './components/register/TextView';
 import TransitionImageView from './components/register/TransitionImageView';
 import QrView from './components/register/QrView'
-import VideoView from './components/register/Video'
+import VideoView from './components/register/video'
 import DanMuView from './components/register/DanMu'
 import App from './app.vue';
 import routes from './routes';
@@ -23,7 +22,6 @@ Vue.config.productionTip = false;
 // Hippy 终端组件扩展中间件，可以使用 modal、view-pager、tab-host、ul-refresh 等原生组件了。
 Vue.use(HippyVueNativeComponents);
 Vue.use(VueRouter);
-Vue.use(VideoComponent);
 Vue.use(coverFlow);
 Vue.use(loading);
 Vue.use(ScrollView);
