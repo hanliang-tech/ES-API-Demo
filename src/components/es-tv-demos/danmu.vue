@@ -1,6 +1,6 @@
 <template>
   <div class="my_container">
-      <danmu-view class="danmu" ref="danmu"></danmu-view>
+      <danmu-view class="danmu" ref="danmu" :lineMargin=30 />
       <div class="btn-group">
           <div class="button" @click="sendText" :focusable=true :focusScale="1.1" :requestFocus='true'><p duplicateParentState>普通文字弹幕</p></div>
           <div class="button" @click="sendTextDecorator" :focusable=true :focusScale="1.1" ><p duplicateParentState>文字修饰弹幕</p></div>
@@ -9,7 +9,7 @@
           <div class="button" @click="pauseOrResume" :focusable=true :focusScale="1.1"><p duplicateParentState>{{pauseResumeText}}</p></div>
       </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -37,14 +37,14 @@ export default {
 
     sendText(){
         this.$refs.danmu.addDM({
-            text:'文本弹幕',
+            text:'文本弹幕123456',
             textColor: '#000000',
         })
     },
 
     sendTextDecorator(){
         this.$refs.danmu.addDM({
-            text:'文本弹幕',
+            text:'文本弹幕123456',
 
             textSize: 22,
             textColor: '#FFFF00',
@@ -55,24 +55,30 @@ export default {
             borderColor: "#D2C0AB",
             borderRadius: 25,
             borderWidth: 2,
+
+            padding:{ left:10, top:2, right:10, bottom:2 }
         })
     },
 
     sendImage(){
         this.$refs.danmu.addDM({
-            text:'图片弹幕',
+            text:'图片弹幕123456',
 
-            textSize: 22,
-            textColor: '#FFFF00',
+            textSize: 25,
+            textColor: '#D8BEA4',
+            textShadowColor: '#000000',
 
-            backgroundColor: '#55000000',
+            backgroundColor: '#40000000',
             backgroundRadius: 25,
 
-            borderColor: "#D2C0AB",
+            borderColor: "#D8BEA4",
             borderRadius: 25,
             borderWidth: 2,
 
             imageUri: "http://test-mp.hiliad.com/static/images/speaker_xm.png",
+            imageSize:{ width:25, height:25 },
+
+            padding:{ left:5, top:2, bottom:2 }
         })
     },
 
