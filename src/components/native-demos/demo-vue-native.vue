@@ -1,11 +1,6 @@
 <template>
   <div id="demo-vue-native" ref="rect">
     <div>
-      <!-- 操作系统平台 -->
-      <div v-if="Vue.Native.Platform" class="native-block">
-        <label class="vue-native-title">Vue.Native.Platform</label>
-        <p>{{ Vue.Native.Platform }}</p>
-      </div>
 
       <!-- 设备名称 -->
       <div v-if="Vue.Native.Device" class="native-block">
@@ -13,7 +8,7 @@
         <p>{{ Vue.Native.Device }}</p>
       </div>
 
-      <!-- API 版本，目前仅限 Android 使用，其它平台返回 null -->
+      <!-- API 版本 -->
       <div v-if="Vue.Native.Platform === 'android'"  class="native-block">
         <label class="vue-native-title">Vue.Native.APILevel</label>
         <p>{{ Vue.Native.APILevel || 'null' }}</p>

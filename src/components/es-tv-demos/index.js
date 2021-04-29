@@ -1,6 +1,7 @@
 import textView from './text-view.vue';
 import focusui from './focus-event.vue';
 import focusBasic from './focus-basic.vue';
+import focusNext from './focus-next.vue';
 import listView from './list.vue';
 import loading from './loading.vue';
 import progress from './progress.vue';
@@ -19,6 +20,10 @@ const demos = {
   focusUI: {
     name: 'focus事件',
     component: focusui,
+  },
+  focusNext: {
+    name: 'nextFocusName',
+    component: focusNext,
   },
   textView: {
     name: 'text-view 组件',

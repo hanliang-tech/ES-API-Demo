@@ -4,6 +4,7 @@ import {
   isFunction,
 } from '../../util';
 
+
 const READY_STATE_CONNECTING = 0;
 const READY_STATE_OPEN = 1;
 const READY_STATE_CLOSING = 2;
@@ -15,29 +16,7 @@ const SOCKET_IO_NATIVE_EVENT = 'SocketIOEvents';
 let SocketIoEventHub;
 let app;
 
-/**
- * The WebSocket API is an advanced technology that makes it possible to open a two-way
- * interactive communication session between the user's browser and a server. With this API,
- * you can send messages to a server and receive event-driven responses without having to
- * poll the server for a reply.
- */
 class SocketIo {
-  /**
-   * Returns a newly created WebSocket object.
-   *
-   * @param {string} url - The URL to which to connect; this should be the URL to which the
-   *                       WebSocket server will respond.
-   * @param {string | string[]} [protocals] - Either a single protocol string or an array
-   *                                          of protocol strings. These strings are used to
-   *                                          indicate sub-protocols, so that a single server
-   *                                          can implement multiple WebSocket sub-protocols
-   *                                          (for example, you might want one server to be able
-   *                                          to handle different types of interactions depending
-   *                                          on the specified protocol).
-   *                                          If you don't specify a protocol string, an empty
-   *                                          string is assumed.
-   * @param {Object} headers - Http headers will append to connection.
-   */
   constructor(url) {
     if (!app) {
       app = getApp();
@@ -74,8 +53,7 @@ class SocketIo {
   }
 
   /**
-   * Closes the WebSocket connection or connection attempt, if any.
-   * If the connection is already CLOSED, this method does nothing.
+   * 断开连接
    */
   disconnect() {
     if (this.readyState !== READY_STATE_OPEN) {
@@ -89,6 +67,9 @@ class SocketIo {
     });
   }
 
+  /**
+   * 重新连接
+   */
   connect(url) {
     if (url) this.params.url = url
     Vue.Native.callNativeWithPromise(SOCKET_IO_MODULE_NAME, 'connect', this.params).then((resp) => {
@@ -103,9 +84,9 @@ class SocketIo {
   }
 
   /**
-   * Enqueues the specified data to be transmitted to the server over the WebSocket connection.
-   *
-   * @param {string} data - The data to send to the server. Hippy supports string type only.
+   * 发送消息
+   * event_name：消息名
+   * data：消息参数
    */
   emit(event_name, data) {
     if (this.readyState !== READY_STATE_OPEN) {
@@ -122,7 +103,9 @@ class SocketIo {
   }
 
   /**
-   * Set an EventHandler that is called when the WebSocket connection's readyState changes to OPEN;
+   * 监听消息
+   * event_name：消息名
+   * callback：回调
    */
   on(event_name, callback) {
     this.SocketIoCallbacks[event_name] = callback;
@@ -135,7 +118,7 @@ class SocketIo {
   }
 
   /**
-   * WebSocket events handler from Vue.Native.
+   * SocketIo events handler from Vue.Native.
    *
    * @param {Object} param - Native response.
    */
@@ -164,3 +147,4 @@ class SocketIo {
 }
 
 export default SocketIo;
+

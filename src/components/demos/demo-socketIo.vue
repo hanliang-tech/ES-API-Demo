@@ -7,13 +7,8 @@
 <script>
 import SocketIO from '../register/socketio';
 export default {
-  data() {
-    return {
-      output: [],
-    };
-  },
   mounted() {
-    this.io = new SocketIO('Socket地址:端口');
+    this.io = new SocketIO('http://Socket地址:端口');
     this.io.on('connect', () => {
       this.socketListeners()
       this.io.emit('login', { token: 'token' })
