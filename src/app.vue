@@ -62,15 +62,6 @@ export default {
     flex: 1;
     background-color: #fff;
   }
-  .title {
-    font-size: 20px;
-    line-height: 60px;
-    margin-left: 20px;
-    margin-right: 20px;
-    font-weight: bold;
-    background-color: #40b883;
-    color: #ffffff;
-  }
   .button {
     width: 200px;
     margin: 10px;

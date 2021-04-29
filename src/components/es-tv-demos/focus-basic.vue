@@ -25,6 +25,17 @@
       </div>
     </div>
 
+    <div class="classfocus">
+      <p class="title">使用class改变焦点样式</p>
+      <div class="classfocus-wrap">
+        <ul horizontal>
+          <li v-for="i in 4" :focusable="true" name="classFocus" @focus="onfocus">
+            <div class="classfocus-button" :class="{focus: focusName === 'classFocus' && focusIndex === i-1}"><p>Item {{i}}</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -32,9 +43,23 @@
 import Vue from 'vue';
 import { getApp } from '../../util';
 export default {
+  data() {
+    return {
+      focusName: '',
+      focusIndex: 0
+    }
+  },
   methods: {
     backPress() {
       Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+    },
+    onfocus(e) {
+      if (e.isFocused) {
+        this.focusName = e.target.attributes.name
+        this.focusIndex = e.target.index
+      } else {
+        this.focusName = ''
+      }
     },
   },
   mounted() {
@@ -138,4 +163,47 @@ export default {
     focus-color:#fff;
   }
 
+  .classfocus {
+    padding: 25px;
+    align-items: flex-start;
+    padding-top: 100px;
+  }
+  .classfocus .title {
+    color: #000;
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  .classfocus-wrap {
+    width: 1820px;
+    height: 200px;
+    flex: 1;
+  }
+  .classfocus li {
+    width: 220px;
+  }
+
+  .classfocus-button {
+    width: 200px;
+    border-style: solid;
+    border-color: #40b883;
+    border-width: 2px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+  }
+  .classfocus-button p {
+    height: 56px;
+    line-height: 56px;
+    font-size: 20px;
+    color: #40b883;
+    text-align: center;
+    text-align-vertical: center;
+  }
+  .classfocus-button.focus {
+    background-color: #40b883;
+  }
+  .classfocus-button.focus p {
+    color: #fff;
+  }
 </style>
