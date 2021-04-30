@@ -35,10 +35,10 @@ adb install -r /Downloads/browser-dev-debug.apk
 ```
 adb shell am broadcast -a com.hili.bct.test.CHANGE_DEBUG_HOST --es host 192.168.x.x:38989
 ```
-> 此处是本机ip，执行后用遥控器退出容器，再次打开即可看到组件demo界面 修改代码电视实时刷新
+> 此处是电脑ip，打开即可看到组件demo界面 修改代码电视实时刷新
 
 ### 如何看错误性的log
-用chrome浏览器打开chrome://inspect/ 勾选Discover network targets，配置加入本机38989端口，例如：192.168.x.x:38989，然后inspect查看log调试
+用chrome浏览器打开chrome://inspect/ 勾选Discover network targets，配置加入电脑38989端口，例如：192.168.x.x:38989，然后inspect查看log调试
 
 ### 调试中不刷新如何解决
 如果调试中出现修改代码保存后电视不刷新现象，需要检查adb连接情况或者设备是否在线

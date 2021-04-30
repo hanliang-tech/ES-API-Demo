@@ -1,6 +1,7 @@
 import textView from './text-view.vue';
 import focusui from './focus-event.vue';
 import focusBasic from './focus-basic.vue';
+import focusNext from './focus-next.vue';
 import listView from './list.vue';
 import loading from './loading.vue';
 import progress from './progress.vue';
@@ -8,6 +9,8 @@ import divGradient from './div-gradient-bg.vue';
 import imgTransition from './img-transition.vue';
 import imgQr from './img-qr.vue';
 import videoView from './video.vue';
+import coverFlow from './cover-flow';
+import danMu from './danmu';
 
 const demos = {
   focusBasic: {
@@ -17,6 +20,10 @@ const demos = {
   focusUI: {
     name: 'focus事件',
     component: focusui,
+  },
+  focusNext: {
+    name: 'nextFocusName',
+    component: focusNext,
   },
   textView: {
     name: 'text-view 组件',
@@ -49,6 +56,14 @@ const demos = {
   videoView: {
     name: '视频组件',
     component: videoView,
+  },
+  CoverFlow: {
+    name: 'CoverFlow',
+    component: coverFlow,
+  },
+  DanMu: {
+    name: '弹幕',
+    component: danMu,
   },
 
 };

@@ -2,7 +2,7 @@
   <div class='container videoContainer'>
       <!-- 视频组件 -->
     <div class="video-wrap">
-      <video-view class='video' src="http://ft-oss.fangtangtv.com/ssp/license/video6.mp4" ref="video" :controls="true" :progressUpdateInterval=1000
+      <video-view class='video' :src="videoUrl" ref="video" :controls="true" :progressUpdateInterval=1000
                   :controlStyle="{colors:['#00000000', '#000000']}"
                   :seekStyle="{seekBackgroundColor:'#50FFFFFF', seekProgressColor:'#ff6f2e', seekRadius:5.0, seekHeight:5, seekThumbSize:20, seekThumbColor:'#ffffff'}"
                   @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" @video-play="onVideoPlay"
@@ -12,7 +12,9 @@
       </div>
     </div>
     <div class="video-btn">
+      <div class="button" @click="playFirst" :focusable=true :focusScale="1.1" :requestFocus=true ><p duplicateParentState>第一集</p></div>
       <div class="button" @click="play" :focusable=true :focusScale="1.1"><p duplicateParentState>{{playPauseText}}</p></div>
+      <div class="button" @click="stop" :focusable=true :focusScale="1.1"><p duplicateParentState>停止</p></div>
       <div class="button" @click="showController" :focusable=true :focusScale="1.1"><p duplicateParentState>显示进度条</p></div>
       <div class="button" @click="forwardThenSeconds" :focusable=true :focusScale="1.1"><p duplicateParentState>快进20秒</p></div>
     </div>
@@ -27,6 +29,7 @@ import { getApp } from '@/util';
 export default {
   data() {
     return {
+      videoUrl: 'https://ft-oss.fangtangtv.com/ssp/license/video2.mp4?',
       playPauseText: '暂停',
       videoLoading: true,
     };
@@ -39,9 +42,16 @@ export default {
     backPress() {
       Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
     },
+
+    playFirst(){
+      this.videoUrl = this.videoUrl + '0'
+    },
     play() {
       this.$refs.video.playOrPause();
       this.updateStateText()
+    },
+    stop(){
+      this.$refs.video.stop()
     },
     updateStateText(){
       setTimeout(()=>{

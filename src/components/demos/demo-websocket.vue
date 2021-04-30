@@ -10,7 +10,7 @@
   </div>
   <div>
     <p class="demo-title">Message:</p>
-    <input ref="inputMessage" value="Rock it with Hippy WebSocket" />
+    <input ref="inputMessage" value="Rock it with WebSocket" />
     <button @click="sendMessage"><span>Send</span></button>
   </div>
   <div>

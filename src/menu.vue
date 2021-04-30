@@ -128,7 +128,6 @@ export default {
 }
 
 .feature-item {
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }

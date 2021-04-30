@@ -147,6 +147,9 @@ function registerVideo() {
       onVideoPause(evt) {
         this.$emit('video-pause', evt);
       },
+      onVideoProgressChange(evt) {
+        this.$emit('video-progress-change', evt);
+      },
     },
     render(h) {
       const on = getEventRedirector.call(this, [
@@ -156,6 +159,7 @@ function registerVideo() {
         ['video-buffer-end', 'videoBufferEnd'],
         ['video-play', 'videoPlay'],
         ['video-pause', 'videoPause'],
+        ['video-progress-change', 'videoProgressChange'],
       ]);
       return h('VideoView',
         {
