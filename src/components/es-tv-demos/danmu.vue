@@ -15,6 +15,7 @@
 <script>
 import Vue from 'vue';
 import { getApp } from '@/util';
+import native from '@/native';
 
 let pause = false;
 let show = true;
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
 
     sendText(){

@@ -51,7 +51,8 @@
  */
 
 import Vue from 'vue';
-import { getApp } from '../../util';
+import { getApp } from '@/util';
+import native from '@/native';
 import Loop from './animations/loop.vue';
 import VoteUp from './animations/vote-up.vue';
 import VoteDown from './animations/vote-down.vue';
@@ -81,7 +82,7 @@ export default {
       this.direction = this.direction === 'horizon' ? 'vertical' : 'horizon';
     },
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
   },
   mounted() {

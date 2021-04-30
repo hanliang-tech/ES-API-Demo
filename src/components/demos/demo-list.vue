@@ -49,7 +49,8 @@
 
 <script>
 import Vue from 'vue';
-import { getApp } from '../../util';
+import { getApp } from '@/util';
+import native from '@/native';
 import mockData from '../list-items/mock';
 import '../list-items';
 
@@ -93,7 +94,7 @@ export default {
 
   methods: {
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
     mockFetchData() {
       return new Promise((resolve) => {

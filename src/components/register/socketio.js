@@ -2,7 +2,8 @@ import Vue from 'vue';
 import {
   getApp,
   isFunction,
-} from '../../util';
+} from '@/util';
+import native from '@/native';
 
 
 const READY_STATE_CONNECTING = 0;

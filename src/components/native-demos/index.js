@@ -8,10 +8,10 @@ const demos = {};
 
 if (Vue.Native) {
   Object.assign(demos, {
-    demoVueNative: {
-      name: 'Vue.Native 属性',
-      component: demoVueNative,
-    },
+    // demoVueNative: {
+    //   name: 'Vue.Native 属性',
+    //   component: demoVueNative,
+    // },
     demoAnimation: {
       name: 'animation 组件',
       component: demoAnimation,

@@ -18,7 +18,8 @@
 
 <script>
 import Vue from 'vue';
-import { getApp } from '../../util';
+import { getApp } from '@/util';
+import native from '@/native';
 
 export default {
   data() {
@@ -38,7 +39,7 @@ export default {
   },
   methods: {
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
     onChildFocus(e) {
       console.log(`onChildFocus index:${e.child.index}`);

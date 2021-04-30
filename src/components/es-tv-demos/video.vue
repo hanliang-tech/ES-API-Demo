@@ -26,6 +26,7 @@
 <script>
 import Vue from 'vue';
 import { getApp } from '@/util';
+import native from '@/native';
 export default {
   data() {
     return {
@@ -40,7 +41,7 @@ export default {
   },
   methods: {
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
 
     playFirst(){

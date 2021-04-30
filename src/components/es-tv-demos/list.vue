@@ -54,7 +54,8 @@
 
 <script>
 import Vue from 'vue';
-import { getApp } from '../../util';
+import { getApp } from '@/util';
+import native from '@/native';
 
 export default {
   data() {
@@ -67,7 +68,7 @@ export default {
   },
   methods: {
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
     onChildFocus(e) {
       const pos = e.child.position;
@@ -75,7 +76,7 @@ export default {
       this.$refs.list1.scrollToIndex(0, pos, false, 0, 0);
       clearTimeout(this.handler);
       this.handler = setTimeout(() => {
-        Vue.Native.callUIFunction(this.$refs.list1, 'setSelectChildPosition', [pos]);
+        native.setSelectChildPosition(this.$refs.list1, pos)
       }, 16);
     },
   },

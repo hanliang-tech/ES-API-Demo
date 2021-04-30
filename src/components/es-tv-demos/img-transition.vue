@@ -14,6 +14,7 @@
 <script>
 import Vue from 'vue';
 import { getApp } from '@/util';
+import native from '@/native';
 
 let index = 0;
 let isIntercept=false
@@ -60,7 +61,7 @@ export default {
 
   methods: {
     backPress() {
-      Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+      native.closePage()
     },
 
     changeNextImage(){

@@ -47,6 +47,7 @@ import demos from './components/demos';
 import nativeDemos from './components/native-demos';
 import esTvDemos from './components/es-tv-demos';
 import { getApp } from './util';
+import native from './native';
 
 export default {
   name: 'App',
@@ -91,8 +92,7 @@ export default {
   },
   methods: {
     routeTo(url) {
-      // this.$router.push(url)
-      Vue.Native.callNative('MiniModule', 'execute', { action: '__AC_NEW_TAB__', data: JSON.stringify({ url }) });
+      native.newTab(url, '', '#ffffff')
     },
     onFocus(e) {
       console.log("onFocus isFocused:" + e.isFocused);
@@ -102,11 +102,11 @@ export default {
       console.log('backPress', now)
       clearTimeout(this.exitTimer)
       if (now - this.exitTime < 1) {
-        Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+        native.closePage()
       } else {
         this.exitTime = now
         this.exitTimer = setTimeout(() => {
-          Vue.Native.callNative('MiniModule', 'execute', {action: '__AC_TOAST__', text: '双击返回键退出APP'});
+          native.TOAST('双击返回键退出APP')
         }, 1000)
       }
     },

@@ -36,7 +36,8 @@
 
 <script>
 import Vue from 'vue';
-import { getApp } from '../../util';
+import { getApp } from '@/util';
+import native from '@/native';
 export default {
   methods: {
     clickView() {
@@ -65,7 +66,7 @@ export default {
     },
     backPress() {
       if (!this.dialogIsVisible) {
-        Vue.Native.callNative('DeviceEventModule', 'invokeDefaultBackPressHandler');
+        native.closePage()
       }
     },
   },
