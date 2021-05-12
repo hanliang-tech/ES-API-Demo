@@ -4,6 +4,7 @@
     <div class="video-wrap">
       <video-view class='video' :src="videoUrl" ref="video" :controls="true" :progressUpdateInterval=1000
                   :controlStyle="{colors:['#00000000', '#000000']}"
+                  resizeMode="CENTER_INSIDE"
                   :seekStyle="{seekBackgroundColor:'#50FFFFFF', seekProgressColor:'#ff6f2e', seekRadius:5.0, seekHeight:5, seekThumbSize:20, seekThumbColor:'#ffffff'}"
                   @video-load='onVideoLoaded' @video-buffer-start='onVideoBufferStart' @video-buffer-end="onVideoBufferEnd" @video-play="onVideoPlay"
                   @video-pause="onVideoPause" @video-progress-change="onVideoProgressChange"/>
