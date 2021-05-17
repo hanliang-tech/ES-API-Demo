@@ -1,12 +1,27 @@
 <template>
   <div class='container coverflow'>
-    <cover-flow id="scrollView" :focusable="false" :clipChildren="false" :zoomInValue="1.3" orientation="vertical">
-      <div id="scrollChild" :focusable="false" :clipChildren="false" >
+    <cover-flow class="cf_vertical" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="0" :isVertical="true">
+      <div class="scrollChild" :focusable="false" >
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
       </div>
     </cover-flow>
+
+    <cover-flow class="cf_horizontal" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="5000" >
+      <div class="scrollChild" :focusable="false" :clipChildren="false" >
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
+      </div>
+    </cover-flow>
+
   </div>
 
 </template>
@@ -97,26 +112,37 @@ export default {
 
 <style scoped>
 
-.coverflow {
-  position: absolute;
-  top: 450px;
-  left: 24px;
-  width: 610px;
+.coverflow{
+  flex-direction: row;
 }
-#scrollView {
+
+.cf_vertical {
   width: 330px;
-  height: 610px;
+  height: 800px;
+  left: 100px;
 }
-#scrollView #scrollChild {
-  width: 330px;
-  height: 1920px;
+
+.cf_vertical .scrollChild {
+  height: 1080px;
   display: flex;
   flex-direction: column;
   padding: 50px;
 }
+
+.cf_horizontal {
+  width: 800px;
+  height: 330px;
+  left: 500px;
+}
+.cf_horizontal .scrollChild {
+  width: 1080px;
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+}
+
 .coverflow img {
   width: 230px;
   height: 230px;
 }
-
 </style>
