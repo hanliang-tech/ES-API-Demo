@@ -13,6 +13,7 @@ import DanMuView from './components/register/DanMu'
 import App from './app.vue';
 import routes from './routes';
 import { setApp } from './util';
+import AudioView from "./components/register/AudioView";
 
 // 禁止终端调试信息输出，取消注释即可使用。
 // Vue.config.silent = true;
@@ -31,6 +32,7 @@ Vue.use(TransitionImageView);
 Vue.use(QrView);
 Vue.use(VideoView);
 Vue.use(DanMuView);
+Vue.use(AudioView);
 
 const router = new VueRouter(routes);
 

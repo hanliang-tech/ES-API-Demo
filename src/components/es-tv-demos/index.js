@@ -11,6 +11,7 @@ import imgQr from './img-qr.vue';
 import videoView from './video.vue';
 import coverFlow from './cover-flow';
 import danMu from './danmu';
+import audio from './audio';
 
 const demos = {
   focusBasic: {
@@ -64,6 +65,10 @@ const demos = {
   DanMu: {
     name: '弹幕',
     component: danMu,
+  },
+  AudioView: {
+    name: 'Audio',
+    component: audio,
   },
 
 };

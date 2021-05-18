@@ -5,17 +5,13 @@
 
     <seek-bar
       class="column_player_progress"
-      :maxProgress="100"
-      :focusable="true"
-      :progress="50"
-      name="progress"
-      @focus="focusChange"
-      @seek-change="seekChange"
-      cornerRadius="20"
-      secondColor="#00000000"
-      thumbColor="#121212"
-      startColor="#FFFF3823"
-      endColor="#FFDCDCDC"/>
+      :barHeight="10"
+      :thumbWidth="45"
+      :thumbHeight="45"
+      backgroundColor="#999999"
+      progressColor="#00AA00"
+      thumbColor="#FF4081"
+      :progress="50" :maxProgress="100"/>
 
   </div>
 </template>
