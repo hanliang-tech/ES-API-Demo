@@ -6,12 +6,12 @@
       src="http://test-mp.hiliad.com/static/music/data/qlx.mp3"
 
 <!--需要打开如下开关才能收到对应的回调-->
-      :onPlayProgress="true"
-      :onPlayStart="true"
-      :onPlayPause="true"
-      :onPlayResume="true"
-      :onPlayComplete="true"
-      :setOnPlayError="true"/>
+<!--      :onPlayProgress="true"  onProgress-->
+<!--      :onPlayStart="true"    onPlaying-->
+<!--      :onPlayPause="true"   onPause-->
+<!--      :onPlayResume="true"  onPlaying-->
+<!--      :onPlayComplete="true"  onEnded-->
+<!--      :setOnPlayError="true"/>  onError-->
 
 <!--方法-->
 <!--    $ref.audio.play()-->
