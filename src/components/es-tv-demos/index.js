@@ -58,17 +58,17 @@ const demos = {
     name: '视频组件',
     component: videoView,
   },
+  AudioView: {
+    name: '音频组件',
+    component: audio,
+  },
   CoverFlow: {
     name: 'CoverFlow',
     component: coverFlow,
   },
   DanMu: {
-    name: '弹幕',
+    name: '弹幕组件',
     component: danMu,
-  },
-  AudioView: {
-    name: 'Audio',
-    component: audio,
   },
 
 };

@@ -3,6 +3,7 @@ import demoDiv from './demo-div.vue';
 import demoImg from './demo-img.vue';
 import demoP from './demo-p.vue';
 import demoList from './demo-list.vue';
+// import demoShadow from './demo-shadow.vue';
 // import demoWebSocket from './demo-websocket.vue';
 
 const demos = {
@@ -26,6 +27,10 @@ const demos = {
     name: 'ul/li 组件',
     component: demoList,
   },
+  // demoShadow: {
+  //   name: 'boxShadow',
+  //   component: demoShadow,
+  // },
   // demoWebSocket: {
   //   name: 'WebSocket',
   //   component: demoWebSocket,

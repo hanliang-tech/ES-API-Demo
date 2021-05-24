@@ -5,12 +5,17 @@
 
     <seek-bar
       class="column_player_progress"
-      :barHeight="10"
-      :thumbWidth="45"
-      :thumbHeight="45"
-      backgroundColor="#999999"
-      progressColor="#00AA00"
-      thumbColor="#FF4081"
+      :barHeight="6"
+      :thumbWidth="35"
+      :thumbHeight="35"
+      backgroundColor="#40ffffff"
+      progressColor="#60ffffff"
+      thumbColor="#ffffff"
+      :listenProgress="true"
+      @seek-change="onSeekChange"
+      :focusable="true"
+      name="progress"
+      @focus="focusChange"
       :progress="50" :maxProgress="100"/>
 
   </div>
@@ -29,8 +34,8 @@ export default {
     focusChange(e) {
       console.log(`seekBar focusChange isFocused: ${e.isFocused}`);
     },
-    seekChange(e) {
-      console.log(`zhaopeng onSeekChange fromUser:${e.fromUser},progress:${e.progress}`);
+    onSeekChange(e) {
+      console.log(`seekBar onSeekChange fromUser:${e.fromUser},left:${e.pLeft},right:${e.pRight},state:${e.state}`);
     },
     backPress() {
       native.closePage()

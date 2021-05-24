@@ -147,8 +147,11 @@ function registerVideo() {
       onVideoPause(evt) {
         this.$emit('video-pause', evt);
       },
-      onVideoProgressChange(evt) {
-        this.$emit('video-progress-change', evt);
+      onProgressChange(evt) {
+        this.$emit('progress-change', evt);
+      },
+      onVideoError(evt) {
+        this.$emit('video-error', evt);
       },
     },
     render(h) {
@@ -159,7 +162,8 @@ function registerVideo() {
         ['video-buffer-end', 'videoBufferEnd'],
         ['video-play', 'videoPlay'],
         ['video-pause', 'videoPause'],
-        ['video-progress-change', 'videoProgressChange'],
+        ['progress-change', 'progressChange'],
+        ['video-error', 'videoError'],
       ]);
       return h('VideoView',
         {

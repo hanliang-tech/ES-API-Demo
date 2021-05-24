@@ -34,7 +34,9 @@ function registerSeekBar() {
             break;
           case 'onSeekBarChange':
             event.fromUser = nativeEventParams.fromUser;
-            event.progress = nativeEventParams.progress;
+            event.pLeft = nativeEventParams.pLeft;
+            event.pRight = nativeEventParams.pRight;
+            event.state = nativeEventParams.state;
             break;
           default:
             break;

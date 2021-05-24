@@ -1,25 +1,21 @@
 <template>
   <div class="container" style="width:1920px; height:1080px; display:flex; flex-direction:row; justify-content:center; align-items:center">
-    <audio
-<!--属性-->
-      :autoPlay="false"
-      src="http://test-mp.hiliad.com/static/music/data/qlx.mp3"
-
-<!--需要打开如下开关才能收到对应的回调-->
-<!--      :onPlayProgress="true"  onProgress-->
-<!--      :onPlayStart="true"    onPlaying-->
-<!--      :onPlayPause="true"   onPause-->
-<!--      :onPlayResume="true"  onPlaying-->
-<!--      :onPlayComplete="true"  onEnded-->
-<!--      :setOnPlayError="true"/>  onError-->
-
-<!--方法-->
-<!--    $ref.audio.play()-->
-<!--    $ref.audio.play(['url'])-->
-<!--    $ref.audio.pause()-->
-<!--    $ref.audio.seek([100])-->
-<!--    $ref.audio.stop()-->
-<!--    $ref.audio.release()-->
+    <audio :autoPlay="true"
+           src="http://test-mp.hiliad.com/static/music/data/qlx.mp3"
+           :onPlayProgress="true"
+           :onPlayStart="true"
+           :onPlayComplete="true"
+           :onPlayPause="true"
+           :onPlayResume="true"
+           :setOnPlayError="true"
+           @audio-progress="onProgress"
+           @audio-loaded="onLoaded"
+           @audio-ended="onEnded"
+           @audio-pause="onPause"
+           @audio-playing="onPlaying"
+           @audio-error="onError"
+           ref="audioView"
+    />
   </div>
 </template>
 
@@ -36,7 +32,28 @@ export default {
   },
   methods: {
     backPress() {
+      this.$refs.audioView.stop()
       native.closePage()
+    },
+    onLoaded(e) {
+      console.log('onLoaded', e)
+      this.totalTime = e.length
+    },
+    onEnded(e) {
+      console.log('onEnded', e)
+    },
+    onProgress(e) {
+      console.log('onProgress', e)
+      this.playTime = e.current
+    },
+    onPause(e) {
+      console.log('onEnded', e)
+    },
+    onPlaying(e) {
+      console.log('onEnded', e)
+    },
+    onError(e) {
+      console.log('onEnded', e)
     },
   }
 }
