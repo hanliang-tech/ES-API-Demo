@@ -1,6 +1,6 @@
 <template>
   <div class='container coverflow'>
-    <cover-flow class="cf_vertical" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="0" :isVertical="true">
+    <cover-flow class="cf_vertical" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="2000" :isVertical="true">
       <div class="scrollChild" :focusable="false" >
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
@@ -11,7 +11,7 @@
       </div>
     </cover-flow>
 
-    <cover-flow class="cf_horizontal" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="5000" >
+    <cover-flow class="cf_horizontal" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="2000" >
       <div class="scrollChild" :focusable="false" :clipChildren="false" >
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
         <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
@@ -123,7 +123,7 @@ export default {
 }
 
 .cf_vertical .scrollChild {
-  height: 1080px;
+  height: 1920px;
   display: flex;
   flex-direction: column;
   padding: 50px;
@@ -135,7 +135,7 @@ export default {
   left: 500px;
 }
 .cf_horizontal .scrollChild {
-  width: 1080px;
+  width: 1920px;
   display: flex;
   flex-direction: row;
   padding: 50px;
