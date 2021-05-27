@@ -1,24 +1,25 @@
 <template>
   <div class='container coverflow'>
-    <cover-flow class="cf_vertical" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="2000" :isVertical="true">
-      <div class="scrollChild" :focusable="false" >
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
+    <cover-flow class="cf_vertical" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="2000" :isVertical="true"
+                @scroll="onScroll" ref="coverFlow">
+      <div class="scrollChild" >
+        <img src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic3.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic3.png">
       </div>
     </cover-flow>
 
-    <cover-flow class="cf_horizontal" :focusable="false" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="2000" >
-      <div class="scrollChild" :focusable="false" :clipChildren="false" >
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic1.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic2.png">
-        <img :focusable="false" src="http://test-mp.hiliad.com/static/taobao/pic3.png">
+    <cover-flow class="cf_horizontal" :clipChildren="false" :zoomInValue="1.3" :autoScrollInterval="2000" >
+      <div class="scrollChild" :clipChildren="false" >
+        <img src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic3.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic1.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic2.png">
+        <img src="http://test-mp.hiliad.com/static/taobao/pic3.png">
       </div>
     </cover-flow>
 
@@ -45,67 +46,12 @@ export default {
     backPress() {
       native.closePage()
     },
-    play() {
-      this.$refs.video.playOrPause();
-      this.updateStateText()
-    },
-    updateStateText(){
-      setTimeout(()=>{
-        this.$refs.video.isPlay(play=>{
-          console.log('isplay', play)
-          this.playPauseText = play? '暂停' : '播放';
-        })
-      }, 50)
-    },
-
-    onVideoLoaded(){
-      this.hideLoading()
-      console.log('加载成功...');
-    },
-
-    onVideoPlay(){
-      this.hideLoading()
-      console.log('播放...');
-    },
-
-    onVideoPause(){
-      console.log('暂停...');
-    },
-
-    onVideoProgressChange(e){
-      console.log('aaaa', e);
-      console.log('onVideoProgressChange position:' + e.position + ', duration:' + e.duration);
-    },
-
-    onVideoBufferStart(){
-      this.showLoading()
-      console.log('开始缓冲...');
-    },
-
-    onVideoBufferEnd(){
-      this.hideLoading()
-      console.log('结束缓冲...');
-    },
-
-    showLoading(){
-      this.videoLoading = true;
-    },
-
-    hideLoading(){
-      this.videoLoading = false;
-    },
-
-    showController() {
-      this.$refs.video.showController()
-    },
-
-    forwardThenSeconds(){
-      this.$refs.video.getCurrentPosition(position => {
-        console.log('getCurrentPosition', position)
-        this.$refs.video.seek(position + 20 * 1000)
-        this.$refs.video.play()
+    onScroll(e) {
+      console.log('onScroll', e)
+      this.$refs.coverFlow.getCurrentIndex(data => {
+        console.log(data.index)
       })
-    }
+    },
   },
 };
 </script>
@@ -123,7 +69,6 @@ export default {
 }
 
 .cf_vertical .scrollChild {
-  height: 1920px;
   display: flex;
   flex-direction: column;
   padding: 50px;
