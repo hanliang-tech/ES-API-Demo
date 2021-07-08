@@ -9,7 +9,7 @@ function registerDanMuView() {
   Vue.component('danmu-view',{
     methods: {
       addDM(data, callback) {
-        Vue.Native.callUIFunction(this.$refs.danmu, 'addDM', [data], (res) => {
+        Vue.Native.callUIFunction(this.$refs.danmu, 'addDM', data, (res) => {
           callback(res)
         });
       },
