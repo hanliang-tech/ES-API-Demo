@@ -14,8 +14,8 @@ import native from '@/native';
 export default {
   data() {
     return {
-      url: 'http://baidu.com',
-      displayUrl: 'http://baidu.com',
+      url: 'http://mp.es.hiliad.com/',
+      displayUrl: 'http://mp.es.hiliad.com/',
       iframeStyle: {
         'min-height': Vue.Native ? 100 : '100vh',
       },
