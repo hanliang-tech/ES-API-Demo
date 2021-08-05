@@ -3,6 +3,8 @@ import demoDiv from './demo-div.vue';
 import demoImg from './demo-img.vue';
 import demoP from './demo-p.vue';
 import demoList from './demo-list.vue';
+import demoInput from './demo-input.vue';
+import demoIframe from './demo-iframe.vue';
 // import demoShadow from './demo-shadow.vue';
 // import demoWebSocket from './demo-websocket.vue';
 
@@ -26,6 +28,14 @@ const demos = {
   demoUl: {
     name: 'ul/li 组件',
     component: demoList,
+  },
+  demoInput: {
+    name: 'input 文本框',
+    component: demoInput,
+  },
+  demoIframe: {
+    name: 'iframe',
+    component: demoIframe,
   },
   // demoShadow: {
   //   name: 'boxShadow',

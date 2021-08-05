@@ -13,13 +13,13 @@
       <span>文本内容为：</span>
       <span>{{ text }}</span>
     </div>
-    <button class="input-button" @click="clearTextContent" >
+    <button class="input-button" :focusable="true" @click="clearTextContent" >
       <span>清空文本内容</span>
     </button>
-    <button class="input-button" @click="focus" >
+    <button class="input-button" :focusable="true" @click="focus" >
       <span>Focus</span>
     </button>
-    <button class="input-button" @click="blur" >
+    <button class="input-button" :focusable="true" @click="blur" >
       <span>Blur</span>
     </button>
     <label>数字:</label>
@@ -51,6 +51,8 @@
 
 <script>
 import Vue from 'vue';
+import { getApp } from '@/util';
+import native from '@/native';
 /**
    * 这个 Demo 里有直接操作 DOM 的章节
    */
@@ -64,6 +66,8 @@ export default {
     };
   },
   mounted() {
+    this.app = getApp();
+    this.app.$on('hardwareBackPress', this.backPress);
     this.getChildNodes(this.$refs.inputDemo.childNodes).find(element => element.tagName === 'input').focus();
   },
   methods: {
@@ -103,6 +107,9 @@ export default {
       evt.stopPropagation();
       this.$refs.input.blur();
     },
+    backPress() {
+      native.closePage()
+    },
   },
 };
 </script>
@@ -132,5 +139,6 @@ export default {
   padding-right: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
+  focus-scale: 1.2;
 }
 </style>

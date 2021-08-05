@@ -24,7 +24,7 @@
       </cover-flow>
 
       <div class="swiper-coverFlow">
-        <cover-flow class="coverFlow" :isVertical="true" :zoomInValue="1" :autoScrollInterval="4000"
+        <cover-flow class="coverFlow" :focusable="false" :isVertical="true" :zoomInValue="1" :autoScrollInterval="4000"
                     @scroll="onScroll" ref="coverFlow">
           <div class="scrollChild" :focusable="false" >
             <div class="child-item" v-for="(item, index) in coverFlowList" :key="index">

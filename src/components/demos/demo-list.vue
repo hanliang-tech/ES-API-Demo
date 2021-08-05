@@ -15,8 +15,8 @@
     <ul
       id="list"
       ref="list"
-      @loadMore="onEndReached"
-      :preload="5"
+      @loadMore="onLoadMore"
+      :preloadItemNumber="5"
       @scroll="onScroll"
       :numberOfRows="dataSource.length"
       :clipChildren="false"
@@ -107,7 +107,7 @@ export default {
         }, 300);
       });
     },
-    async onEndReached() {
+    async onLoadMore() {
       const { dataSource } = this;
 
       // 检查锁，如果在加载中，则直接返回，防止二次加载数据

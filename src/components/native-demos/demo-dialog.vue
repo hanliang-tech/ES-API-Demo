@@ -69,10 +69,14 @@ export default {
         native.closePage()
       }
     },
+    nativeOnKeyDown(e) {
+      console.log('nativeOnKeyDown')
+    },
   },
   mounted() {
     this.app = getApp();
     this.app.$on('hardwareBackPress', this.backPress);
+    this.app.$on('nativeOnKeyDown', this.nativeOnKeyDown);
   },
 
   data() {

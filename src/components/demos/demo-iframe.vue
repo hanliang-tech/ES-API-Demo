@@ -1,33 +1,35 @@
 <template>
   <div id="iframe-demo" :style="iframeStyle">
-    <label>地址栏：</label>
-    <input
-      id="address"
-      name="url"
-      ref="input"
-      returnKeyType="go"
-      :value="displayUrl"
-      @endEditing="goToUrl"
-      @keyup="onKeyUp"
-    />
-    <iframe id="iframe" ref="iframe" :src="url" @load="onLoad" />
+    <label>内嵌网址：</label>
+    <iframe class="iframe" ref="iframe" :src="url" @load="onLoad" />
+    <label>内嵌html：</label>
+    <iframe class="iframe" ref="iframe2" :source="{html: html}" />
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-
+import { getApp } from '@/util';
+import native from '@/native';
 export default {
   data() {
     return {
-      url: 'https://v.qq.com',
-      displayUrl: 'https://v.qq.com',
+      url: 'http://baidu.com',
+      displayUrl: 'http://baidu.com',
       iframeStyle: {
         'min-height': Vue.Native ? 100 : '100vh',
       },
+      html: '<div>iframe内容</div>',
     };
   },
+  mounted() {
+    this.app = getApp();
+    this.app.$on('hardwareBackPress', this.backPress);
+  },
   methods: {
+    backPress() {
+      native.closePage()
+    },
     onLoad(evt) {
       let { url } = evt;
       if (url === undefined) {
@@ -36,19 +38,7 @@ export default {
       if (url !== this.url) {
         this.displayUrl = url;
       }
-    },
-    // Web compatible
-    onKeyUp(evt) {
-      if (evt.keyCode === 13) {
-        evt.preventDefault();
-        this.goToUrl({
-          value: this.$refs.input.value,
-        });
-      }
-    },
-    goToUrl(evt) {
-      this.url = evt.value;
-    },
+    }
   },
 };
 </script>
@@ -65,7 +55,7 @@ export default {
     border-width: 1px;
   }
 
-  #iframe-demo #iframe {
+  #iframe-demo .iframe {
     flex: 1;
     flex-grow: 1;
   }
