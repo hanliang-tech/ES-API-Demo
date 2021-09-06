@@ -6,45 +6,64 @@
       class="input"
       v-model="text"
       ref="input"
-      @click="stopPropagation"
+      name="input"
+      @click="onClick"
       @keyboardWillShow="onKeyboardWillShow"
+      :focusable="true"
+      @focus="onfocus"
+      :class="{focus: focusName === 'input'}"
     />
     <div>
       <span>文本内容为：</span>
       <span>{{ text }}</span>
     </div>
-    <button class="input-button" :focusable="true" @click="clearTextContent" >
+    <button class="input-button" :focusable="true" @focus="onfocus" @click="clearTextContent" >
       <span>清空文本内容</span>
     </button>
-    <button class="input-button" :focusable="true" @click="focus" >
+    <button class="input-button" :focusable="true" @focus="onfocus" @click="focus" >
       <span>Focus</span>
     </button>
-    <button class="input-button" :focusable="true" @click="blur" >
+    <button class="input-button" :focusable="true" @focus="onfocus" @click="blur" >
       <span>Blur</span>
     </button>
     <label>数字:</label>
     <input
       type="number"
+      ref="number"
+      name="number"
       placeholder="Number"
       class="input"
       @change="textChange"
-      @click="stopPropagation"
+      @click="onClick"
+      :focusable="true"
+      @focus="onfocus"
+      :class="{focus: focusName === 'number'}"
     />
     <label>密码:</label>
     <input
       type="password"
+      ref="password"
+      name="password"
       placeholder="Password"
       class="input"
       @change="textChange"
-      @click="stopPropagation"
+      @click="onClick"
+      :focusable="true"
+      @focus="onfocus"
+      :class="{focus: focusName === 'password'}"
     />
     <label>文本（限制5个字符）:</label>
     <input
       maxlength=5
+      ref="maxlength"
+      name="maxlength"
       placeholder="5 个字符"
       class="input"
       @change="textChange"
-      @click="stopPropagation"
+      @click="onClick"
+      :focusable="true"
+      @focus="onfocus"
+      :class="{focus: focusName === 'maxlength'}"
     />
   </div>
 </template>
@@ -62,6 +81,7 @@ export default {
      */
   data() {
     return {
+      focusName: '',
       text: '',
     };
   },
@@ -84,12 +104,6 @@ export default {
     blurAllInput() {
       this.getChildNodes(this.$refs.inputDemo.childNodes).filter(element => element.tagName === 'input').forEach(input => input.blur());
     },
-    /**
-       * 点击输入框时，点击事件会冒泡到顶部 View 导致 focus 时又被 blur 了，所以这里需要阻止一下冒泡
-       */
-    stopPropagation(evt) {
-      evt.stopPropagation();
-    },
     clearTextContent() {
       this.text = '';
     },
@@ -110,6 +124,17 @@ export default {
     backPress() {
       native.closePage()
     },
+    onfocus(e) {
+      const name = e.target.attributes.name || ''
+      this.focusName = name
+    },
+    /**
+     * 点击输入框时，点击事件会冒泡到顶部 View 导致 focus 时又被 blur 了，所以这里需要阻止一下冒泡
+     */
+    onClick() {
+      this.$refs[this.focusName].focus();
+      evt.stopPropagation();
+    },
   },
 };
 </script>
@@ -125,12 +150,15 @@ export default {
   width: 300px;
   height: 48px;
   color: #242424;
-  border-width: 1px;
+  border-width: 2px;
   border-color: #ccc;
   font-size: 16px;
   margin: 20px;
   placeholder-text-color: #aaa;
   /* underline-color-android: #40b883; */
+}
+.demo-input .input.focus {
+  border-color: #40b883;
 }
 .demo-input .input-button {
   border-color: #4c9afa;

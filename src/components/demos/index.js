@@ -5,8 +5,6 @@ import demoP from './demo-p.vue';
 import demoList from './demo-list.vue';
 import demoInput from './demo-input.vue';
 import demoIframe from './demo-iframe.vue';
-// import demoShadow from './demo-shadow.vue';
-// import demoWebSocket from './demo-websocket.vue';
 
 const demos = {
   demoDiv: {
@@ -37,14 +35,6 @@ const demos = {
     name: 'iframe',
     component: demoIframe,
   },
-  // demoShadow: {
-  //   name: 'boxShadow',
-  //   component: demoShadow,
-  // },
-  // demoWebSocket: {
-  //   name: 'WebSocket',
-  //   component: demoWebSocket,
-  // },
 };
 
 export default demos;
